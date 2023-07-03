@@ -11,24 +11,24 @@ export default {
     <div class="basis-1/2 flex justify-center mt-16 lg:margin-0">
       <img class="image" src="@/assets/mihoanhthanh.png" />
     </div>
-    <div class="basis-1/2 p-11 mt-">
-      <h1 class="text-center">Wecome to Our Restaurant</h1>
-      <p class="text-center">
+    <div class="basis-1/2 p-11">
+      <h1 class="text-center lg:text-left">Wecome to Our Restaurant</h1>
+      <p class="text-center lg:text-left">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <div class="buttons grid grid-cols-auto">
-        <button class="button col-auto min-w-[150px] max-w-[160px]">
-          Buffet menu
-        </button>
+      <div class="buttons flex flex-wrap justify-center xl:justify-start">
+        <router-link to="/#">
+          <button class="button">Buffet menu</button>
+        </router-link>
 
-        <button class="button col-auto min-w-[150px] max-w-[160px]">
-          A-la-carté menu
-        </button>
+        <router-link to="/#">
+          <button class="button">A-la-carté menu</button>
+        </router-link>
 
-        <button class="button-second col-auto min-w-[150px] max-w-[160px]">
-          Book a table
-        </button>
+        <router-link to="/#">
+          <button class="button-second">Book a table</button>
+        </router-link>
       </div>
     </div>
   </div>
