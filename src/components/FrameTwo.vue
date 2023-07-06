@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div
-    class="container mx-auto min-h-screen grid grid-cols-1 items-center lg:grid-cols-2"
+    class="container mx-auto py-24 grid grid-cols-1 items-center lg:grid-cols-2"
   >
     <div class="basis-1/2 flex justify-center mt-16 lg:margin-0">
       <img class="image" src="@/assets/mihoanhthanh.png" />
