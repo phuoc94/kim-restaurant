@@ -56,7 +56,6 @@ h4 {
   line-height: 29px;
 }
 
-
 p {
   color: #f0f0f0;
   font-family: Montserrat;
