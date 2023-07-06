@@ -19,13 +19,19 @@
         </ul>
       </div>
       <div class="basis-1/3 flex justify-center">
-        <img class="h-[57px] md:h-[85px]" src="@/assets/logo.png" />
+        <router-link to="/">
+          <img class="h-[57px] md:h-[85px]" src="@/assets/logo.png" />
+        </router-link>
       </div>
       <div
         class="basis-1/3 self-center justify-end items-center gap-[39px] hidden md:flex"
       >
-        <i class="icon pi pi-facebook"></i>
-        <button>Book a table</button>
+        <a href="https://www.facebook.com/VietnamilainenRavintolaKim">
+          <i class="icon pi pi-facebook"></i>
+        </a>
+        <router-link to="/contact#reservation">
+          <button>Book a table</button>
+        </router-link>
       </div>
 
       <div class="basis-1/3 self-center justify-end flex md:hidden pr-[17px]">
@@ -43,7 +49,7 @@ import "primeicons/primeicons.css";
 export default {
   setup() {
     const menuItems = ref([
-      { id: 1, label: "Menu", route: "/" },
+      { id: 1, label: "Menu", route: "/menu" },
       { id: 2, label: "About", route: "/about" },
       { id: 3, label: "Contact", route: "/contact" },
       { id: 4, label: "Gallery", route: "/gallery" },

@@ -18,15 +18,15 @@ export default {
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
       <div class="buttons flex flex-wrap justify-center xl:justify-start">
-        <router-link to="/#">
+        <router-link to="/menu#buffet">
           <button class="button">Buffet menu</button>
         </router-link>
 
-        <router-link to="/#">
+        <router-link to="/menu#alacarte">
           <button class="button">A-la-carté menu</button>
         </router-link>
 
-        <router-link to="/#">
+        <router-link to="/contact#reservation">
           <button class="button-second">Book a table</button>
         </router-link>
       </div>
