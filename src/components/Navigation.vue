@@ -1,91 +1,106 @@
+<template>
+  <nav class="container mx-auto">
+    <div class="flex flex-row justify-end h-[76px] md:h-[122px]">
+      <div class="basis-1/3 self-center hidden md:block">
+        <ul class="flex">
+          <li
+            v-for="item in menuItems"
+            :key="item.id"
+            :class="{ 'active-menu': isActive(item) }"
+            class="mr-2"
+          >
+            <router-link
+              :to="item.route"
+              @click="activateItem(item)"
+              class="p-2"
+              >{{ item.label }}</router-link
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="basis-1/3 flex justify-center">
+        <img class="h-[57px] md:h-[85px]" src="@/assets/logo.png" />
+      </div>
+      <div
+        class="basis-1/3 self-center justify-end items-center gap-[39px] hidden md:flex"
+      >
+        <i class="icon pi pi-facebook"></i>
+        <button>Book a table</button>
+      </div>
+
+      <div class="basis-1/3 self-center justify-end flex md:hidden pr-[17px]">
+        <i class="icon pi pi-bars"></i>
+      </div>
+    </div>
+  </nav>
+</template>
+
 <script>
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+import "primeicons/primeicons.css";
+
 export default {
-  name: "NavigationSection",
+  setup() {
+    const menuItems = ref([
+      { id: 1, label: "Menu", route: "/" },
+      { id: 2, label: "About", route: "/about" },
+      { id: 3, label: "Contact", route: "/contact" },
+      { id: 4, label: "Gallery", route: "/gallery" },
+    ]);
+
+    const route = useRoute();
+
+    const isActive = (item) => {
+      return item.route === route.path;
+    };
+
+    const activateItem = (item) => {
+      menuItems.value.forEach((menuItem) => {
+        menuItem.isActive = menuItem.id === item.id;
+      });
+    };
+
+    return {
+      menuItems,
+      isActive,
+      activateItem,
+    };
+  },
 };
 </script>
 
-<template>
-  <div
-    class="pt-1.5 pr-[126px] pb-1.5 pl-[126px] shrink-0 w-[1512px] h-[122px] relative"
-  >
-    <div
-      class="flex flex-row gap-12 items-center justify-center absolute left-32 top-[calc(50%_-_14px)]"
-    >
-      <div
-        class="text-[#171717] text-left relative"
-        style="
-          font: var(--h-2-bold, 700 24px/29px 'Times New Roman', sans-serif);
-        "
-      >
-        Menu
-      </div>
-
-      <div
-        class="text-[#101a24] text-left relative"
-        style="font: var(--h-2, 400 24px/29px 'Times New Roman', sans-serif)"
-      >
-        About
-      </div>
-
-      <div
-        class="text-[#101a24] text-left relative"
-        style="font: var(--h-2, 400 24px/29px 'Times New Roman', sans-serif)"
-      >
-        Contact
-      </div>
-
-      <div
-        class="text-[#101a24] text-left relative"
-        style="font: var(--h-2, 400 24px/29px 'Times New Roman', sans-serif)"
-      >
-        Gallery
-      </div>
-    </div>
-
-    <img
-      class="w-[214px] h-[85px] absolute left-[calc(50%_-_107px)] top-1.5"
-      src="@/assets/logo.png"
-    />
-
-    <div
-      class="bg-ffbb-00 rounded-[5px] pt-2 pr-4 pb-2 pl-4 flex flex-col gap-4 items-center justify-start absolute left-[1267px] top-[calc(50%_-_22px)]"
-    >
-      <button
-        class="navigation-button"
-        style="font: 700 16px/29px 'David Libre', sans-serif"
-      >
-        Book a table
-      </button>
-    </div>
-
-    <svg
-      class="absolute left-[1193px] top-[calc(50%_-_17px)] overflow-visible"
-      style=""
-      width="35"
-      height="35"
-      viewBox="0 0 35 35"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M32.0834 17.5001C32.0834 9.45008 25.5501 2.91675 17.5001 2.91675C9.45008 2.91675 2.91675 9.45008 2.91675 17.5001C2.91675 24.5584 7.93341 30.4355 14.5834 31.7917V21.8751H11.6667V17.5001H14.5834V13.8542C14.5834 11.0397 16.873 8.75008 19.6876 8.75008H23.3334V13.1251H20.4167C19.6147 13.1251 18.9584 13.7813 18.9584 14.5834V17.5001H23.3334V21.8751H18.9584V32.0105C26.323 31.2813 32.0834 25.0688 32.0834 17.5001Z"
-        fill="black"
-      />
-    </svg>
-  </div>
-</template>
-
 <style scoped>
-.navigation-button {
+.active-menu {
+  color: #171717;
+  font-weight: 700;
+}
+li {
+  color: #101a24;
+  font-size: 24px;
+  font-family: Times New Roman;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+}
+
+.pi-facebook {
+  color: #000000;
+  font-size: 36px;
+}
+.pi-bars {
+  color: #000000;
+  font-size: 24px;
+}
+button {
+  padding: 0.75rem 2rem;
+  border-radius: 0.3125rem;
   background: var(--ffbb-00, #ffc933);
-  border-radius: 5px;
-  padding: 12px 32px 12px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
+  color: var(--171717, #171717);
+  font-size: 1rem;
+  font-family: David Libre;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.8125rem;
 }
 </style>
