@@ -13,47 +13,13 @@
       >
         <Carousel
           :navigation="false"
-          :autoPlay="false"
-          :sliderCount="2"
+          :autoPlay="true"
+          :sliderCount="slideLen"
           class="carousel"
           v-slot="{ currentSlide }"
         >
-          <Slide>
-            <div v-show="currentSlide === 1" class="slide-content">
-              <div class="bg-white p-8 rounded-2xl mx-6 md:mx-0">
-                <div class="stars flex gap-4 justify-center">
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                </div>
-                <p class="my-4">
-                  Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam
-                  sit. Vitae congue ultrices neque penatibus mi in quisque. Leo
-                  in cursus enim magnis ante. Proin iaculis platea ipsum
-                  sagittis ac eu aliquam quis. Ornare tincidunt tempus semper
-                </p>
-                <h4>Ama Ampomah, Google Review</h4>
-              </div>
-            </div>
-          </Slide>
-          <Slide>
-            <div v-show="currentSlide === 2" class="slide-content">
-              <div class="bg-white p-8 rounded-2xl mx-6">
-                <div class="stars flex gap-4 justify-center">
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                  <i class="icon pi pi-star-fill"></i>
-                </div>
-                <p class="my-4">
-                  Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam
-                </p>
-                <h4>Ama Ampomahsss, Google Review</h4>
-              </div>
-            </div>
+          <Slide v-for="(slide, index) in slides" :key="index">
+            <ReviewContent v-show="currentSlide === index + 1" :slide="slide" />
           </Slide>
         </Carousel>
       </div>
@@ -64,17 +30,32 @@
 <script>
 import Carousel from "@/components/Carousel.vue";
 import Slide from "@/components/Slide.vue";
+import ReviewContent from "@/components/ReviewContent.vue";
 
 export default {
   name: "FrameThree",
   components: {
     Carousel,
     Slide,
+    ReviewContent,
   },
   setup() {
-    const slideLen = 1;
+    const slides = [
+      {
+        rating: 5,
+        text: "Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam sit. Vitae congue ultrices neque penatibus mi in quisque. Leo in cursus enim magnis ante. Proin iaculis platea ipsum sagittis ac eu aliquam quis. Ornare tincidunt tempus semper",
+        reviewer: "Ama Ampomah, Google Review",
+      },
+      {
+        rating: 4,
+        text: "Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam",
+        reviewer: "Ama Ampomahsss, Google Review",
+      },
+    ];
 
-    return { slideLen };
+    const slideLen = slides.length;
+
+    return { slideLen, slides };
   },
 };
 </script>
