@@ -1,11 +1,12 @@
 <template>
   <Carousel
     :navigation="false"
-    :autoPlay="false"
+    :autoPlay="true"
+    :sliderCount="2"
     class="carousel"
     v-slot="{ currentSlide }"
   >
-    <Slide>
+    <Slide :animation="true">
       <div v-show="currentSlide === 1" class="slide-content">
         <div class="w-[376px]">
           <h1 class="mb-[24px]">Lunch Buffet</h1>
@@ -19,7 +20,7 @@
         </div>
       </div>
     </Slide>
-    <Slide>
+    <Slide :animation="true">
       <div v-show="currentSlide === 2" class="slide-content">
         <h1>Dinner Specials</h1>
         <p>
@@ -41,11 +42,6 @@ export default {
   components: {
     Carousel,
     Slide,
-  },
-  setup() {
-    const slideLen = 2;
-
-    return { slideLen };
   },
 };
 </script>

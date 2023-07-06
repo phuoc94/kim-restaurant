@@ -1,5 +1,5 @@
 <template>
-  <div class="carousel">
+  <div class="review-carousel">
     <slot :currentSlide="currentSlide" />
 
     <div v-if="navigationEnable" class="navigate">
@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 export default {
-  props: ["autoPlay", "duration", "navigation", "pagination", "sliderCount"],
+  props: ["autoPlay", "duration", "navigation", "pagination"],
   setup(props) {
     const currentSlide = ref(1);
-    const getSlideCount = ref(props.sliderCount);
+    const getSlideCount = ref(null);
     const autoPlayEnable = ref(
       props.autoPlay === undefined ? true : props.autoPlay
     );
@@ -70,6 +70,11 @@ export default {
     if (autoPlayEnable.value) {
       fnAutoPlay();
     }
+
+    onMounted(() => {
+      getSlideCount.value = document.querySelectorAll(".slide").length;
+      console.log(getSlideCount.value);
+    });
 
     return {
       currentSlide,

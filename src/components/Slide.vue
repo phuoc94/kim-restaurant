@@ -1,13 +1,23 @@
 <template>
   <div class="slide">
-    <transition name="slide">
+    <transition name="slide" v-if="playAnimation">
       <slot />
     </transition>
+    <slot v-else />
   </div>
 </template>
 
 <script>
-export default {};
+import { ref } from "vue";
+
+export default {
+  props: ["animation"],
+  setup(props) {
+    const playAnimation = ref(props.animation);
+
+    return { playAnimation };
+  },
+};
 </script>
 
 <style>
