@@ -1,21 +1,38 @@
 <template>
+  <div
+    v-if="formSubmitted"
+    class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
+  >
+    <h2 class="col-span-full text-center">
+      Thank you for making a reservation!
+    </h2>
+  </div>
+
+  <div
+    v-if="formError"
+    class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
+  >
+    <h2 class="col-span-full text-center text-red-600">
+      Error: {{ formError }}
+    </h2>
+  </div>
+
   <form
+    v-else
     ref="form"
     @submit.prevent="sendEmail"
     class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
   >
     <input
-      type="date"
+      ref="datePicker"
       name="user_date"
-      v-model="formValues.currentDate"
-      class="col-span-2 appearance-none rounded border border-gray-300 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+      class="col-span-2 rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
       style="height: 5rem"
     />
     <input
-      type="time"
+      ref="timePicker"
       name="user_time"
-      value="10:00"
-      class="col-span-2 appearance-none rounded border border-gray-300 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+      class="col-span-2 rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
       style="height: 5rem"
     />
     <select
@@ -71,15 +88,18 @@
 </template>
 
 <script>
+import { onMounted, ref } from "vue";
 import emailjs from "@emailjs/browser";
-import { reactive, ref } from "vue";
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 export default {
   setup() {
     const form = ref(null);
-    const formValues = reactive({
-      currentDate: new Date().toISOString().substring(0, 10),
-    });
+    const formError = ref(null);
+    const formSubmitted = ref(false);
+    const datePicker = ref(null);
+    const timePicker = ref(null);
 
     const sendEmail = () => {
       emailjs
@@ -92,17 +112,36 @@ export default {
         .then(
           (result) => {
             console.log("SUCCESS!", result.text);
+            formSubmitted.value = true;
           },
           (error) => {
             console.log("FAILED...", error.text);
+            formError.value = error.text;
           }
         );
     };
 
+    onMounted(() => {
+      flatpickr(datePicker.value, {
+        defaultDate: new Date(),
+        dateFormat: "d/m/Y",
+      });
+
+      flatpickr(timePicker.value, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        defaultDate: "10:00",
+      });
+    });
+
     return {
       form,
-      formValues,
       sendEmail,
+      formSubmitted,
+      formError,
+      datePicker,
+      timePicker,
     };
   },
 };
