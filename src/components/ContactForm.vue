@@ -8,14 +8,14 @@
       type="date"
       name="user_date"
       v-model="formValues.currentDate"
-      class="col-span-2 rounded border border-gray-300 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+      class="col-span-2 appearance-none rounded border border-gray-300 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
       style="height: 5rem"
     />
     <input
       type="time"
       name="user_time"
       value="10:00"
-      class="col-span-2 rounded border border-gray-300 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+      class="col-span-2 appearance-none rounded border border-gray-300 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
       style="height: 5rem"
     />
     <select
