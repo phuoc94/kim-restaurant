@@ -26,13 +26,13 @@
     <input
       ref="datePicker"
       name="user_date"
-      class="col-span-2 rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+      class="col-span-2 w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
       style="height: 5rem"
     />
     <input
       ref="timePicker"
       name="user_time"
-      class="col-span-2 rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+      class="col-span-2 w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
       style="height: 5rem"
     />
     <select
