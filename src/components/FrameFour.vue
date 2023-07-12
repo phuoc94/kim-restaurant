@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto mt-16 text-center">
+  <div class="container mx-auto mt-16 px-4 text-center">
     <h1>Make a Reservation</h1>
     <p>Get in touch with the restaurant</p>
     <ContactForm />
