@@ -1,7 +1,7 @@
 <template>
-  <nav class="flex container mx-auto items-center flex-wrap px-6 justify-end">
+  <nav class="container mx-auto flex flex-wrap items-center justify-end px-6">
     <div
-      class="basis-5/12 gap-[39px] hidden justify-end items-center lg:order-last lg:flex"
+      class="hidden basis-5/12 items-center justify-end gap-[39px] lg:order-last lg:flex"
     >
       <a href="https://www.facebook.com/VietnamilainenRavintolaKim">
         <i class="icon pi pi-facebook"></i>
@@ -11,7 +11,7 @@
       </router-link>
     </div>
     <div
-      class="flex basis-2/12 items-center justify-center flex-shrink-0 pb-6 pt-1"
+      class="flex flex-shrink-0 basis-2/12 items-center justify-center pb-6 pt-1"
     >
       <router-link to="/">
         <img class="h-[57px] lg:h-[85px]" src="@/assets/logo.png" />
@@ -20,7 +20,7 @@
     <div class="flex basis-5/12 justify-end lg:hidden">
       <button
         @click="open = !open"
-        class="flex items-center px-3 py-2 border rounded"
+        class="flex items-center rounded border px-3 py-2"
       >
         <i v-if="!open" class="icon pi pi-bars"></i>
         <i v-else class="icon pi pi-times"></i>
@@ -28,20 +28,20 @@
     </div>
     <div
       :class="{ block: open, hidden: !open }"
-      class="w-full block flex-grow text-right lg:text-left lg:flex lg:items-center lg:w-auto lg:order-first"
+      class="block w-full flex-grow text-right lg:order-first lg:flex lg:w-auto lg:items-center lg:text-left"
     >
       <div class="text-sm lg:flex-grow">
         <router-link
           v-for="link in menuItems"
           :key="link.id"
           :to="link.route"
-          class="block mt-4 lg:inline-block lg:mt-0 mr-4"
+          class="mr-4 mt-4 block lg:mt-0 lg:inline-block"
           active-class="router-link-active"
         >
           <span class="link">{{ link.label }}</span>
         </router-link>
       </div>
-      <div class="lg:hidden my-4">
+      <div class="my-4 lg:hidden">
         <router-link to="/contact#reservation">
           <button class="book-table">Book a table</button>
         </router-link>

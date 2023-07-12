@@ -6,9 +6,9 @@ export default {
 
 <template>
   <div
-    class="container mx-auto py-24 grid grid-cols-1 items-center lg:grid-cols-2"
+    class="container mx-auto grid grid-cols-1 items-center py-24 lg:grid-cols-2"
   >
-    <div class="basis-1/2 flex justify-center mt-16 lg:margin-0">
+    <div class="lg:margin-0 mt-16 flex basis-1/2 justify-center">
       <img class="image" src="@/assets/mihoanhthanh.png" />
     </div>
     <div class="basis-1/2 p-11">

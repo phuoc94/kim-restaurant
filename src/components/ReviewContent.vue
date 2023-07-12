@@ -1,7 +1,7 @@
 <template>
   <div v-show="isVisible" class="slide-content">
-    <div class="bg-white p-8 rounded-2xl mx-6 md:mx-0">
-      <div class="stars flex gap-4 justify-center">
+    <div class="mx-6 rounded-2xl bg-white p-8 md:mx-0">
+      <div class="stars flex justify-center gap-4">
         <i class="icon pi pi-star-fill" v-for="i in slide.rating" :key="i"></i>
       </div>
       <p class="my-4">{{ slide.text }}</p>
@@ -16,7 +16,6 @@ export default {
   props: {
     isVisible: {
       type: Boolean,
-      required: true,
     },
     slide: {
       type: Object,

@@ -3,13 +3,13 @@
     <div class="px-6 py-16 md:flex md:px-0 md:py-0">
       <div class="md:basis-2/3">
         <img
-          class="rounded-tl-[50px] rounded-tr-[10px] rounded-br-[50px] rounded-bl-[10px] aspect-video w-full object-cover md:rounded-none md:min-h-[767px]"
+          class="aspect-video w-full rounded-bl-[10px] rounded-br-[50px] rounded-tl-[50px] rounded-tr-[10px] object-cover md:min-h-[767px] md:rounded-none"
           src="@/assets/slice2.png"
         />
       </div>
 
       <div
-        class="relative text-center pb-14 translate-y-[-34px] mx-auto md:mr-12 md:translate-y-0 md:self-center md:absolute max-w-[600px] md:left-[55%]"
+        class="relative mx-auto max-w-[600px] translate-y-[-34px] pb-14 text-center md:absolute md:left-[55%] md:mr-12 md:translate-y-0 md:self-center"
       >
         <Carousel
           :navigation="false"
