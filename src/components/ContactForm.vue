@@ -9,7 +9,7 @@
   </div>
 
   <div
-    v-if="formError"
+    v-else-if="formError"
     class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
   >
     <h2 class="col-span-full text-center text-red-600">
@@ -23,21 +23,43 @@
     @submit.prevent="sendEmail"
     class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
   >
-    <input
-      ref="datePicker"
-      name="user_date"
-      class="col-span-2 w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-      style="height: 5rem"
-    />
-    <input
-      ref="timePicker"
-      name="user_time"
-      class="col-span-2 w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-      style="height: 5rem"
-    />
+    <div
+      class="relative col-span-2"
+      id="datepicker"
+      data-te-datepicker-init
+      data-te-format="dd/mm/yyyy"
+      data-te-input-wrapper-init
+    >
+      <input
+        type="text"
+        class="w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        name="user_date"
+        style="height: 5rem"
+        v-model="currentDate"
+        data-te-datepicker-toggle-ref
+        data-te-datepicker-toggle-button-ref
+      />
+    </div>
+    <div
+      class="relative col-span-2"
+      data-te-with-icon="false"
+      data-te-timepicker-init
+      data-te-input-wrapper-init
+      id="timepicker-just-input"
+    >
+      <input
+        type="text"
+        class="col-span-2 w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        data-te-toggle="timepicker-just-input"
+        style="height: 5rem"
+        name="user_time"
+        id="form15"
+        value="10:00"
+      />
+    </div>
     <select
       name="num_people"
-      class="col-span-2 rounded border border-gray-300 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+      class="col-span-2 rounded border border-neutral-900 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
       style="height: 5rem"
     >
       <option value="1">1 person</option>
@@ -58,8 +80,9 @@
         type="email"
         name="user_email"
         placeholder="Email"
-        class="rounded border border-gray-300 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="rounded border border-neutral-900 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
         style="height: 5rem"
+        required
       />
     </div>
     <div class="col-span-3 flex flex-col text-left">
@@ -68,7 +91,7 @@
         type="tel"
         name="user_phone"
         placeholder="Phone number"
-        class="rounded border border-gray-300 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="rounded border border-neutral-900 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
         style="height: 5rem"
       />
     </div>
@@ -78,7 +101,7 @@
         name="message"
         placeholder="Message"
         rows="4"
-        class="w-full rounded border border-gray-300 px-9 py-8 focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="w-full rounded border border-neutral-900 px-9 py-8 focus:outline-none focus:ring-2 focus:ring-blue-600"
       ></textarea>
     </div>
     <div class="col-span-full">
@@ -88,18 +111,26 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 import emailjs from "@emailjs/browser";
-import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+
+import { onMounted } from "vue";
+import { Input, Timepicker, Datepicker, initTE } from "tw-elements";
 
 export default {
   setup() {
     const form = ref(null);
     const formError = ref(null);
     const formSubmitted = ref(false);
-    const datePicker = ref(null);
-    const timePicker = ref(null);
+
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = today.getFullYear();
+
+    today = dd + "/" + mm + "/" + yyyy;
+
+    const currentDate = ref(today);
 
     const sendEmail = () => {
       emailjs
@@ -122,26 +153,15 @@ export default {
     };
 
     onMounted(() => {
-      flatpickr(datePicker.value, {
-        defaultDate: new Date(),
-        dateFormat: "d/m/Y",
-      });
-
-      flatpickr(timePicker.value, {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-        defaultDate: "10:00",
-      });
+      initTE({ Timepicker, Datepicker, Input });
     });
 
     return {
       form,
       sendEmail,
+      currentDate,
       formSubmitted,
       formError,
-      datePicker,
-      timePicker,
     };
   },
 };

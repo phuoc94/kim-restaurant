@@ -48,7 +48,7 @@ export default {
       },
       {
         rating: 4,
-        text: "Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam",
+        text: "Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam sit. Vitae congue ultrices neque penatibus mi in quisque. Leo in cursus enim magnis ante. Proin iaculis platea ipsum sagittis ac eu aliquam quis. Ornare tincidunt tempus semper",
         reviewer: "Ama Ampomahsss, Google Review",
       },
     ];
