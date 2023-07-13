@@ -30,12 +30,12 @@
       :class="{ block: open, hidden: !open }"
       class="block w-full flex-grow text-right lg:order-first lg:flex lg:w-auto lg:items-center lg:text-left"
     >
-      <div class="text-sm lg:flex-grow">
+      <div class="mr-4 flex max-w-[428px] justify-between text-sm lg:flex-grow">
         <router-link
           v-for="link in menuItems"
           :key="link.id"
           :to="link.route"
-          class="mr-4 mt-4 block lg:mt-0 lg:inline-block"
+          class="mt-4 block lg:mt-0 lg:inline-block"
           active-class="router-link-active"
         >
           <span class="link">{{ link.label }}</span>
