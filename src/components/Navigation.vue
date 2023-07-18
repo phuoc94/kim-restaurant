@@ -3,23 +3,23 @@
     class="mx-auto flex flex-wrap items-center justify-end px-4 lg:container"
   >
     <div
-      class="hidden basis-1/3 items-center justify-end gap-[39px] lg:order-last lg:flex lg:basis-5/12"
+      class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >
       <a href="https://www.facebook.com/VietnamilainenRavintolaKim">
-        <i class="icon pi pi-facebook"></i>
+        <i class="icon pi pi-facebook text-4xl text-black"></i>
       </a>
       <router-link to="/contact#reservation">
-        <button class="book-table">Book a table</button>
+        <button class="button">Book a table</button>
       </router-link>
     </div>
     <div
       class="flex flex-shrink-0 basis-1/3 items-center justify-center pb-6 pt-1 lg:basis-2/12"
     >
       <router-link to="/">
-        <img class="h-[57px] lg:h-[85px]" src="@/assets/logo.png" />
+        <img class="h-14 lg:h-20" src="@/assets/logo.png" />
       </router-link>
     </div>
-    <div class="flex basis-1/4 justify-end lg:hidden lg:basis-5/12">
+    <div class="flex basis-1/3 justify-end lg:hidden lg:basis-5/12">
       <button
         @click="open = !open"
         class="flex items-center rounded border px-3 py-2"
@@ -40,12 +40,14 @@
           class="mt-4 block lg:mr-4 lg:mt-0 lg:inline-block"
           active-class="router-link-active"
         >
-          <span class="link">{{ link.label }}</span>
+          <span class="link font-serif text-2xl text-gray-900">{{
+            link.label
+          }}</span>
         </router-link>
       </div>
       <div class="my-4 lg:hidden">
         <router-link to="/contact#reservation">
-          <button class="book-table">Book a table</button>
+          <button class="button">Book a table</button>
         </router-link>
       </div>
     </div>
@@ -82,34 +84,7 @@ export default {
 </script>
 
 <style scoped>
-.book-table {
-  background: var(--ffbb-00, #ffc933);
-  border-radius: 0.3125rem;
-  color: var(--171717, #171717);
-  font-family: David Libre;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.8125rem;
-  padding: 0.75rem 2rem;
-}
-
-.link {
-  color: #101a24;
-  font-family: Times New Roman;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 29px;
-}
-
-.pi-facebook {
-  color: #000000;
-  font-size: 36px;
-}
-
 .router-link-active > .link {
-  color: #171717 !important;
-  font-weight: 700 !important;
+  @apply font-bold text-neutral-900;
 }
 </style>

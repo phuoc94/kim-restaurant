@@ -2,10 +2,14 @@
   <div v-show="isVisible" class="slide-content">
     <div class="mx-6 rounded-2xl bg-white p-8 md:mx-0">
       <div class="stars flex justify-center gap-4">
-        <i class="icon pi pi-star-fill" v-for="i in slide.rating" :key="i"></i>
+        <i
+          class="icon pi pi-star-fill text-yellow-500"
+          v-for="i in slide.rating"
+          :key="i"
+        ></i>
       </div>
-      <p class="my-4">{{ slide.text }}</p>
-      <h4>{{ slide.reviewer }}</h4>
+      <p class="my-4 font-montserrat text-gray-500">{{ slide.text }}</p>
+      <h4 class="font-inter font-bold text-gray-900">{{ slide.reviewer }}</h4>
     </div>
   </div>
 </template>
@@ -24,27 +28,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.pi-star-fill {
-  color: #ffbb00;
-}
-
-p {
-  color: #5c6574;
-  font-family: Montserrat;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 29px;
-}
-
-h4 {
-  color: #101a24;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 29px;
-}
-</style>

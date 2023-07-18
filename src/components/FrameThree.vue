@@ -1,15 +1,15 @@
 <template>
-  <div class="bg-[rgba(23,23,23,0.80)]">
+  <div class="bg-neutral-900/80">
     <div class="px-6 py-16 md:flex md:px-0 md:py-0">
       <div class="md:basis-2/3">
         <img
-          class="aspect-video w-full rounded-bl-[10px] rounded-br-[50px] rounded-tl-[50px] rounded-tr-[10px] object-cover md:min-h-[767px] md:rounded-none"
+          class="aspect-video w-full rounded-bl-[10px] rounded-br-[50px] rounded-tl-[50px] rounded-tr-[10px] object-cover md:min-h-screen md:rounded-none"
           src="@/assets/slice2.png"
         />
       </div>
 
       <div
-        class="relative mx-auto max-w-[600px] translate-y-[-34px] pb-14 text-center md:absolute md:left-[55%] md:mr-12 md:translate-y-0 md:self-center"
+        class="relative mx-auto max-w-xl translate-y-[-34px] pb-14 text-center md:absolute md:left-[55%] md:mr-12 md:translate-y-0 md:self-center"
       >
         <Carousel
           :navigation="false"
@@ -59,27 +59,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.pi-star-fill {
-  color: #ffbb00;
-}
-
-p {
-  color: #5c6574;
-  font-family: Montserrat;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 29px;
-}
-
-h4 {
-  color: #101a24;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 29px;
-}
-</style>

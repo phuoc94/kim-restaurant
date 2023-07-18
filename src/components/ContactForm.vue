@@ -75,7 +75,10 @@
     </select>
 
     <div class="col-span-3 flex flex-col text-left">
-      <label class="hidden lg:block">Email:</label>
+      <label
+        class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
+        >Email:</label
+      >
       <input
         type="email"
         name="user_email"
@@ -86,7 +89,10 @@
       />
     </div>
     <div class="col-span-3 flex flex-col text-left">
-      <label class="hidden lg:block">Phone number:</label>
+      <label
+        class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
+        >Phone number:</label
+      >
       <input
         type="tel"
         name="user_phone"
@@ -96,7 +102,10 @@
       />
     </div>
     <div class="col-span-full text-left">
-      <label class="hidden lg:block">Message:</label>
+      <label
+        class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
+        >Message:</label
+      >
       <textarea
         name="message"
         placeholder="Message"
@@ -166,29 +175,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-label {
-  color: #171717;
-
-  font-family: Times New Roman;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 26px;
-
-  padding-bottom: 0.5rem;
-}
-
-.button {
-  padding: 0.75rem 2rem;
-  border-radius: 0.3125rem;
-  background: var(--ffbb-00, #ffc933);
-  color: var(--171717, #171717);
-  font-size: 1rem;
-  font-family: David Libre;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.8125rem;
-}
-</style>

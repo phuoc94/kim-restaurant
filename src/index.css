@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  .button {
+    @apply rounded-md bg-yellow-500 px-8 py-3 font-libre font-bold text-neutral-900;
+  }
+}

@@ -1,7 +1,7 @@
 <template>
   <div class="bg-orange-50 pb-24">
     <div class="container mx-auto">
-      <h1 class="pb-14 pt-16 text-center">
+      <h1 class="h1 pb-14 pt-16 text-center font-serif font-bold text-black">
         Sneak Peak of Our Delicious Offerings
       </h1>
       <div class="flex justify-center px-4">
@@ -37,16 +37,3 @@ export default {
   components: { FrameFour },
 };
 </script>
-
-<style scoped>
-h1 {
-  color: #000;
-
-  /* H1 */
-  font-family: Times New Roman;
-  font-size: 60px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 65px;
-}
-</style>
