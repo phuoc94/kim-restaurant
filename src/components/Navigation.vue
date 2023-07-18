@@ -1,7 +1,9 @@
 <template>
-  <nav class="container mx-auto flex flex-wrap items-center justify-end px-6">
+  <nav
+    class="mx-auto flex flex-wrap items-center justify-end px-4 lg:container"
+  >
     <div
-      class="hidden basis-5/12 items-center justify-end gap-[39px] lg:order-last lg:flex"
+      class="hidden basis-1/3 items-center justify-end gap-[39px] lg:order-last lg:flex lg:basis-5/12"
     >
       <a href="https://www.facebook.com/VietnamilainenRavintolaKim">
         <i class="icon pi pi-facebook"></i>
@@ -11,13 +13,13 @@
       </router-link>
     </div>
     <div
-      class="flex flex-shrink-0 basis-2/12 items-center justify-center pb-6 pt-1"
+      class="flex flex-shrink-0 basis-1/3 items-center justify-center pb-6 pt-1 lg:basis-2/12"
     >
       <router-link to="/">
         <img class="h-[57px] lg:h-[85px]" src="@/assets/logo.png" />
       </router-link>
     </div>
-    <div class="flex basis-5/12 justify-end lg:hidden">
+    <div class="flex basis-1/4 justify-end lg:hidden lg:basis-5/12">
       <button
         @click="open = !open"
         class="flex items-center rounded border px-3 py-2"
@@ -30,12 +32,12 @@
       :class="{ block: open, hidden: !open }"
       class="block w-full flex-grow text-right lg:order-first lg:flex lg:w-auto lg:items-center lg:text-left"
     >
-      <div class="mr-4 flex max-w-[428px] justify-between text-sm lg:flex-grow">
+      <div class="text-sm lg:flex-grow">
         <router-link
           v-for="link in menuItems"
           :key="link.id"
           :to="link.route"
-          class="mt-4 block lg:mt-0 lg:inline-block"
+          class="mt-4 block lg:mr-4 lg:mt-0 lg:inline-block"
           active-class="router-link-active"
         >
           <span class="link">{{ link.label }}</span>
