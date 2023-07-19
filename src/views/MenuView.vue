@@ -38,9 +38,9 @@
           />
         </div>
       </div>
-      <div v-else-if="currentTab === 'tab2'" class="p-5">Content for Tab 2</div>
-      <div v-else-if="currentTab === 'tab3'" class="p-5">Content for Tab 3</div>
-      <div v-else class="p-5"><FrameFour /></div>
+      <div v-else-if="currentTab === 'tab2'">Content for Tab 2</div>
+      <div v-else-if="currentTab === 'tab3'">Content for Tab 3</div>
+      <div v-else><FrameFour /></div>
     </div>
   </div>
 </template>
