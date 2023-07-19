@@ -1,6 +1,6 @@
 <template>
   <div class="bg-orange-50 pb-24">
-    <div class="container mx-auto">
+    <div class="container">
       <h1 class="h1 pb-14 pt-16 text-center font-serif font-bold text-black">
         Sneak Peak of Our Delicious Offerings
       </h1>

@@ -1,7 +1,5 @@
 <template>
-  <nav
-    class="mx-auto flex flex-wrap items-center justify-end px-4 lg:container"
-  >
+  <nav class="flex flex-wrap items-center justify-end px-4 lg:container">
     <div
       class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >

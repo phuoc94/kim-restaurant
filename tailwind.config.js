@@ -6,6 +6,9 @@ module.exports = {
     "./node_modules/tw-elements/dist/js/**/*.js",
   ],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       fontFamily: {
         serif: ["Times New Roman", "ui-serif", "Georgia"],

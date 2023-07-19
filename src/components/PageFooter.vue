@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div class="page-footer bg-neutral-900/80">
-    <div class="container mx-auto p-11 pt-16 md:flex md:py-28">
+    <div class="container p-11 pt-16 md:flex md:py-28">
       <div class="gap-4 md:flex md:basis-1/2">
         <div class="min-w-max font-montserrat text-zinc-100 md:basis-1/3">
           <h4 class="font-bold">Open hours</h4>

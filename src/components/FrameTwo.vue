@@ -5,9 +5,7 @@ export default {
 </script>
 
 <template>
-  <div
-    class="container mx-auto grid grid-cols-1 items-center py-24 lg:grid-cols-2"
-  >
+  <div class="container grid grid-cols-1 items-center py-24 lg:grid-cols-2">
     <div class="lg:margin-0 mt-16 flex basis-1/2 justify-center">
       <img class="image" src="@/assets/mihoanhthanh.png" />
     </div>
