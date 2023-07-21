@@ -3,10 +3,13 @@
     <div
       class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >
-      <a href="https://www.facebook.com/VietnamilainenRavintolaKim">
+      <a
+        href="https://www.facebook.com/VietnamilainenRavintolaKim"
+        target="_blank"
+      >
         <i class="icon pi pi-facebook text-4xl text-black"></i>
       </a>
-      <router-link to="/contact#reservation">
+      <router-link :to="{ name: 'contact', hash: '#reservation' }">
         <button class="button">Book a table</button>
       </router-link>
     </div>
@@ -36,7 +39,7 @@
           :key="link.id"
           :to="link.route"
           class="mt-4 block lg:mr-4 lg:mt-0 lg:inline-block"
-          active-class="router-link-active"
+          :class="{ 'router-link-active': isActiveRoute(link) }"
         >
           <span class="link font-serif text-2xl text-gray-900">{{
             link.label
@@ -62,9 +65,16 @@ export default {
     const open = ref(false);
     const route = useRoute();
 
+    const isActiveRoute = (menuItem) => {
+      return (
+        (route.path === menuItem.route || route.path.startsWith(`/menu/`)) &&
+        menuItem.label === "Menu"
+      );
+    };
+
     const menuItems = ref([
       { id: 1, label: "Home", route: "/" },
-      { id: 2, label: "Menu", route: "/menu" },
+      { id: 2, label: "Menu", route: "/menu/bestseller" },
       { id: 3, label: "About", route: "/about" },
       { id: 4, label: "Contact", route: "/contact" },
       { id: 5, label: "Gallery", route: "/gallery" },
@@ -76,13 +86,15 @@ export default {
     return {
       open,
       menuItems,
+      isActiveRoute,
     };
   },
 };
 </script>
 
 <style scoped>
-.router-link-active > .link {
+.router-link-active > .link,
+.router-link-exact-active > .link {
   @apply font-bold text-neutral-900;
 }
 </style>
