@@ -24,7 +24,7 @@
     class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
   >
     <div
-      class="col-span-2"
+      class="relative col-span-2"
       id="datepicker"
       data-te-datepicker-init
       data-te-format="dd/mm/yyyy"
@@ -41,7 +41,7 @@
       />
     </div>
     <div
-      class="col-span-2"
+      class="relative col-span-2"
       data-te-with-icon="false"
       data-te-timepicker-init
       data-te-input-wrapper-init
