@@ -1,16 +1,18 @@
 <template>
-  <div class="flex flex-wrap justify-center gap-y-12 py-8 sm:px-12">
-    <div
-      v-for="(card, index) in cards"
-      :key="index"
-      class="basis-full px-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
-    >
-      <Card
-        :title="card.title"
-        :description="card.description"
-        :price="card.price"
-        :image="card.image"
-      />
+  <div class="bg-zinc-700">
+    <div class="container flex flex-wrap justify-center gap-y-12 py-8 sm:px-12">
+      <div
+        v-for="(card, index) in cards"
+        :key="index"
+        class="basis-full px-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+      >
+        <Card
+          :title="card.title"
+          :description="card.description"
+          :price="card.price"
+          :image="card.image"
+        />
+      </div>
     </div>
   </div>
 </template>
