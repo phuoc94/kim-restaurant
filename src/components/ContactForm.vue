@@ -24,7 +24,7 @@
     class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
   >
     <div
-      class="relative col-span-2"
+      class="col-span-2"
       id="datepicker"
       data-te-datepicker-init
       data-te-format="dd/mm/yyyy"
@@ -41,7 +41,7 @@
       />
     </div>
     <div
-      class="relative col-span-2"
+      class="col-span-2"
       data-te-with-icon="false"
       data-te-timepicker-init
       data-te-input-wrapper-init
@@ -49,7 +49,7 @@
     >
       <input
         type="text"
-        class="col-span-2 w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
         data-te-toggle="timepicker-just-input"
         style="height: 5rem"
         name="user_time"
@@ -57,22 +57,20 @@
         value="10:00"
       />
     </div>
-    <select
-      name="num_people"
-      class="col-span-2 rounded border border-neutral-900 px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
-      style="height: 5rem"
-    >
-      <option value="1">1 person</option>
-      <option value="2" selected>2 people</option>
-      <option value="3">3 people</option>
-      <option value="4">4 people</option>
-      <option value="5">5 people</option>
-      <option value="6">6 people</option>
-      <option value="7">7 people</option>
-      <option value="8">8 people</option>
-      <option value="9">9 people</option>
-      <option value="10">10 people</option>
-    </select>
+    <div class="selector col-span-2 rounded border border-neutral-900 px-8">
+      <select name="num_people" class="w-full bg-white" style="height: 5rem">
+        <option value="1">1 person</option>
+        <option value="2" selected>2 people</option>
+        <option value="3">3 people</option>
+        <option value="4">4 people</option>
+        <option value="5">5 people</option>
+        <option value="6">6 people</option>
+        <option value="7">7 people</option>
+        <option value="8">8 people</option>
+        <option value="9">9 people</option>
+        <option value="10">10 people</option>
+      </select>
+    </div>
 
     <div class="col-span-3 flex flex-col text-left">
       <label
@@ -175,3 +173,5 @@ export default {
   },
 };
 </script>
+
+<style scoped></style>
