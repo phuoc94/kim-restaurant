@@ -20,7 +20,7 @@ export default {
         <div class="mt-14 font-montserrat text-zinc-100 md:mt-0 md:basis-1/3">
           <h4 class="font-bold">Navigation</h4>
           <div class="mt-3">
-            <router-link to="/menu">
+            <router-link to="/menu/bestseller">
               <p>Menu</p>
             </router-link>
             <router-link to="/about">
@@ -33,7 +33,12 @@ export default {
         </div>
         <div class="mt-14 md:mt-0 md:basis-1/3">
           <h4 class="font-montserrat font-bold text-zinc-100">
-            FOLLOW US <i class="icon pi pi-facebook ml-2"></i>
+            <a
+              href="https://www.facebook.com/VietnamilainenRavintolaKim"
+              target="_blank"
+            >
+              FOLLOW US <i class="icon pi pi-facebook ml-2"></i>
+            </a>
           </h4>
         </div>
       </div>
