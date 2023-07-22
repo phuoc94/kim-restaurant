@@ -4,7 +4,7 @@
       <div class="md:basis-2/3">
         <img
           class="aspect-video w-full rounded-bl-[10px] rounded-br-[50px] rounded-tl-[50px] rounded-tr-[10px] object-cover md:min-h-screen md:rounded-none"
-          src="@/assets/slice2.png"
+          src="@/assets/slice2.webp"
         />
       </div>
 
