@@ -20,13 +20,13 @@ export default {
         <div class="mt-14 font-montserrat text-zinc-100 md:mt-0 md:basis-1/3">
           <h4 class="font-bold">Navigation</h4>
           <div class="mt-3">
-            <router-link to="/menu/bestseller">
+            <router-link :to="{ path: '/menu/bestseller' }">
               <p>Menu</p>
             </router-link>
-            <router-link to="/about">
+            <router-link :to="{ path: '/about' }">
               <p>About us</p>
             </router-link>
-            <router-link to="/contact">
+            <router-link :to="{ path: '/contact' }">
               <p>Contact us</p>
             </router-link>
           </div>

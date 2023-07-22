@@ -9,14 +9,17 @@
       >
         <i class="icon pi pi-facebook text-4xl text-black"></i>
       </a>
-      <router-link :to="{ name: 'contact', hash: '#reservation' }">
+      <router-link v-if="route.path === '/'" :to="{ hash: '#reservation' }">
+        <button class="button">Book a table</button>
+      </router-link>
+      <router-link v-else :to="{ name: 'contact', hash: '#reservation' }">
         <button class="button">Book a table</button>
       </router-link>
     </div>
     <div
       class="flex flex-shrink-0 basis-1/3 items-center justify-center pb-6 pt-1 lg:basis-2/12"
     >
-      <router-link to="/">
+      <router-link :to="{ path: '/' }">
         <img class="h-14 lg:h-20" src="@/assets/logo.webp" />
       </router-link>
     </div>
@@ -47,7 +50,10 @@
         </router-link>
       </div>
       <div class="my-4 lg:hidden">
-        <router-link to="/contact#reservation">
+        <router-link v-if="route.path === '/'" :to="{ hash: '#reservation' }">
+          <button class="button">Book a table</button>
+        </router-link>
+        <router-link v-else :to="{ name: 'contact', hash: '#reservation' }">
           <button class="button">Book a table</button>
         </router-link>
       </div>
@@ -84,6 +90,7 @@ export default {
     });
 
     return {
+      route,
       open,
       menuItems,
       isActiveRoute,

@@ -14,7 +14,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt
           </p>
-          <router-link to="/menu/lunchbuffet">
+          <router-link :to="{ path: '/menu/lunchbuffet' }">
             <button class="button">Buffet menu</button>
           </router-link>
         </div>

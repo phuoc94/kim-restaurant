@@ -20,15 +20,15 @@ export default {
         tempor incididunt ut labore et dolore magna aliqua.
       </p>
       <div class="flex flex-wrap justify-center gap-4 xl:justify-start">
-        <router-link to="/menu/lunchbuffet/">
+        <router-link :to="{ path: '/menu/lunchbuffet' }">
           <button class="button">Buffet menu</button>
         </router-link>
 
-        <router-link to="/menu/alacarte">
+        <router-link :to="{ path: '/menu/lunchbuffet' }">
           <button class="button">A-la-carté menu</button>
         </router-link>
 
-        <router-link :to="{ name: 'contact', hash: '#reservation' }">
+        <router-link :to="{ hash: '#reservation' }">
           <button
             class="button-second rounded-md bg-neutral-900 px-8 py-3 font-libre font-bold text-white"
           >
