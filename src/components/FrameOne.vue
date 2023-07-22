@@ -69,13 +69,13 @@ export default {
 }
 
 .slide-content:nth-child(1) {
-  background-image: url("@/assets/banner-1.png");
+  background-image: url("@/assets/banner-1.webp");
   background-size: cover;
   background-position: center;
 }
 
 .slide-content:nth-child(2) {
-  background-image: url("@/assets/slice2.png");
+  background-image: url("@/assets/slice2.webp");
   background-size: cover;
   background-position: center;
 }
