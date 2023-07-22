@@ -17,7 +17,7 @@
       class="flex flex-shrink-0 basis-1/3 items-center justify-center pb-6 pt-1 lg:basis-2/12"
     >
       <router-link to="/">
-        <img class="h-14 lg:h-20" src="@/assets/logo.webm" />
+        <img class="h-14 lg:h-20" src="@/assets/logo.webp" />
       </router-link>
     </div>
     <div class="flex basis-1/3 justify-end lg:hidden lg:basis-5/12">
