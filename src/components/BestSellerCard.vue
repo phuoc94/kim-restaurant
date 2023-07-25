@@ -5,10 +5,12 @@
       <div
         class="absolute bottom-[-28px] right-3 h-14 w-14 rounded-full bg-yellow-500"
       >
-        <p class="card-price text-center">
-          <span class="text-xs">from</span> <br />
-          <span class="text-sm">{{ price }}</span>
-        </p>
+        <div
+          class="card-price flex h-full flex-col items-center justify-center text-center"
+        >
+          <div class="text-xs">from</div>
+          <div class="text-sm">{{ price }}</div>
+        </div>
       </div>
     </div>
 
