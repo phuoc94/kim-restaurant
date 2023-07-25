@@ -1,24 +1,27 @@
 <template>
   <div class="bg-zinc-700">
-    <div class="container flex flex-wrap justify-center gap-5 py-5">
-      <router-link
+    <div
+      class="container grid max-w-md grid-cols-2 justify-center gap-5 px-4 py-5 lg:max-w-4xl lg:grid-cols-4"
+    >
+      <div
         v-for="(tab, index) in tabs"
         :key="index"
-        :to="{ name: tab.id }"
-        class="mx-3 cursor-pointer rounded border border-yellow-500 px-4 py-1 font-serif text-xl"
+        class="col-span-1 cursor-pointer rounded border border-yellow-500 px-4 py-1 text-center font-serif text-xl"
         :class="{
           'bg-yellow-500 font-bold text-black': currentTab === tab.id,
           'text-white': currentTab !== tab.id,
         }"
       >
-        <span>
-          <i
-            class="icon pi pi-star-fill text-yellow-200"
-            v-if="currentTab === tab.id"
-          ></i>
-        </span>
-        {{ tab.label }}
-      </router-link>
+        <router-link :to="{ name: tab.id }">
+          <span>
+            <i
+              class="icon pi pi-star-fill text-yellow-200"
+              v-if="currentTab === tab.id"
+            ></i>
+          </span>
+          {{ tab.label }}
+        </router-link>
+      </div>
     </div>
   </div>
   <router-view v-slot="{ Component }">
