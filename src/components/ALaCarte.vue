@@ -6,7 +6,9 @@
       :class="index % 2 === 0 ? 'bg-zinc-700 text-white' : 'orange-50'"
     >
       <div class="container px-4 pb-24 pt-6 font-serif">
-        <h1 class="h1 mb-12 text-center lg:text-left">{{ category }}</h1>
+        <h1 class="h1 mb-12 text-center font-bold lg:text-left">
+          {{ category }}
+        </h1>
 
         <div
           class="mx-auto mb-4 grid max-w-screen-lg grid-cols-[44px_auto_70px] gap-2 lg:grid-cols-[60px_auto_minmax(50px,140px)_185px]"
