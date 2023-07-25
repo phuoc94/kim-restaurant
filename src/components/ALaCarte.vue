@@ -1,9 +1,9 @@
 <template>
   <div>
     <div
-      v-for="(dishes, category, index) in groupedDishes"
+      v-for="(dishes, category) in groupedDishes"
       :key="category"
-      :class="index % 2 === 0 ? 'bg-zinc-700 text-white' : 'orange-50'"
+      class="bg-gradient-to-r from-yellow-300/70 to-orange-400/70"
     >
       <div class="container px-4 pb-24 pt-6 font-serif">
         <h1 class="h1 mb-12 text-center font-bold lg:text-left">
