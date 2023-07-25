@@ -24,17 +24,30 @@
       </router-link>
     </div>
     <div class="flex basis-1/3 justify-end lg:hidden lg:basis-5/12">
-      <button
-        @click="open = !open"
-        class="flex items-center rounded border px-3 py-2"
-      >
-        <i v-if="!open" class="icon pi pi-bars"></i>
-        <i v-else class="icon pi pi-times"></i>
+      <button @click="open = !open" class="flex items-center px-3 py-2">
+        <span v-if="!open"
+          ><svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 17H21M3 12H21M3 7H21"
+              stroke="black"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <i v-else class="icon pi pi-times text-xl"></i>
       </button>
     </div>
     <div
       :class="{ block: open, hidden: !open }"
-      class="block w-full flex-grow text-right lg:order-first lg:flex lg:w-auto lg:items-center lg:text-left"
+      class="block w-full flex-grow text-center lg:order-first lg:flex lg:w-auto lg:items-center lg:text-left"
     >
       <div class="text-sm lg:flex-grow">
         <router-link
