@@ -17,7 +17,7 @@
           <div
             v-for="dish in dayMenu.dish"
             :key="dish.title"
-            class="flex w-full text-white sm:px-8"
+            class="flex w-full font-montserrat text-white sm:px-8"
           >
             <span>{{ dish.title }}</span>
             <span
