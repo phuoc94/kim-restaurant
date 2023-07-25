@@ -23,7 +23,9 @@
     <p class="mb-8 font-inter text-white">and more</p>
 
     <div class="mb-12">
-      <button class="button">Menu</button>
+      <router-link :to="{ path: '/menu/bestseller' }">
+        <button class="button">Menu</button>
+      </router-link>
     </div>
   </div>
 </template>
