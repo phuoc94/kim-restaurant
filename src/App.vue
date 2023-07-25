@@ -1,8 +1,10 @@
 <template>
   <Navigation />
-  <transition name="fade">
-    <router-view />
-  </transition>
+  <router-view v-slot="{ Component }">
+    <transition>
+      <component :is="Component" />
+    </transition>
+  </router-view>
   <PageFooter />
 </template>
 
