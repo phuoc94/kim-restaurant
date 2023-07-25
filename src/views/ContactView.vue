@@ -25,12 +25,21 @@
         </div>
       </div>
       <div class="flex pt-6 text-left text-lg">
-        <div class="basis-1/2">
+        <div class="mr-2 basis-5/12">
           <p>We can be contacted via</p>
-          <p>email</p>
-          <p>or telephone on</p>
+          <p>
+            telephone on
+            <span class="font-bold text-amber-400">+358 40 5771358</span>
+          </p>
         </div>
-        <div class="basis-1/2"><p>We are located at</p></div>
+        <div class="ml-2 basis-7/12">
+          <p>
+            We are located at
+            <span class="font-bold text-amber-400"
+              >Kaskenkatu 8, Turku, Finland</span
+            >
+          </p>
+        </div>
       </div>
     </div>
   </div>
