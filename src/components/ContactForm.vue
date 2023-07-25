@@ -24,7 +24,7 @@
     class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
   >
     <div
-      class="relative col-span-2"
+      class="relative col-span-2 rounded border border-neutral-900"
       id="datepicker"
       data-te-datepicker-init
       data-te-format="dd/mm/yyyy"
@@ -32,7 +32,7 @@
     >
       <input
         type="text"
-        class="w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="w-full px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
         name="user_date"
         style="height: 5rem"
         v-model="currentDate"
@@ -41,7 +41,7 @@
       />
     </div>
     <div
-      class="relative col-span-2"
+      class="relative col-span-2 rounded border border-neutral-900"
       data-te-with-icon="false"
       data-te-timepicker-init
       data-te-input-wrapper-init
@@ -49,7 +49,7 @@
     >
       <input
         type="text"
-        class="w-full rounded border border-neutral-900 px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+        class="w-full px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
         data-te-toggle="timepicker-just-input"
         style="height: 5rem"
         name="user_time"
@@ -57,7 +57,7 @@
         value="10:00"
       />
     </div>
-    <div class="selector col-span-2 rounded border border-neutral-900 px-8">
+    <div class="col-span-2 rounded border border-neutral-900 px-8">
       <select name="num_people" class="w-full bg-white" style="height: 78px">
         <option value="1">1 person</option>
         <option value="2" selected>2 people</option>
