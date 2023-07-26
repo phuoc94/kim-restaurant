@@ -1,7 +1,7 @@
 <template>
   <div class="bg-neutral-900/80">
-    <div class="px-6 py-16 md:flex md:px-0 md:py-0">
-      <div class="md:basis-2/3">
+    <div class="pt-16 md:flex md:px-0 md:py-0">
+      <div class="px-4 md:basis-2/3">
         <img
           class="aspect-video w-full rounded-bl-[10px] rounded-br-[50px] rounded-tl-[50px] rounded-tr-[10px] object-cover md:min-h-screen md:rounded-none"
           src="@/assets/slice2.webp"
@@ -9,18 +9,23 @@
       </div>
 
       <div
-        class="relative mx-auto max-w-xl translate-y-[-34px] pb-14 text-center md:absolute md:left-[55%] md:mr-12 md:translate-y-0 md:self-center"
+        class="relative mx-auto max-w-xl -translate-y-28 text-center md:absolute md:left-[40%] md:mr-12 md:translate-y-0 md:self-center lg:left-[50%]"
       >
         <Carousel
-          :navigation="false"
+          :navigation="true"
           :autoPlay="true"
           :sliderCount="slideLen"
           class="carousel"
           v-slot="{ currentSlide }"
         >
-          <Slide v-for="(slide, index) in slides" :key="index">
-            <ReviewContent v-show="currentSlide === index + 1" :slide="slide" />
-          </Slide>
+          <div class="m-8 pt-8 md:mx-16">
+            <Slide v-for="(slide, index) in slides" :key="index">
+              <ReviewContent
+                v-show="currentSlide === index + 1"
+                :slide="slide"
+              />
+            </Slide>
+          </div>
         </Carousel>
       </div>
     </div>
