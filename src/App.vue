@@ -1,10 +1,6 @@
 <template>
   <Navigation />
-  <router-view v-slot="{ Component }">
-    <transition>
-      <component :is="Component" />
-    </transition>
-  </router-view>
+  <router-view></router-view>
   <PageFooter />
 </template>
 
@@ -29,14 +25,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>
+<style scoped></style>
