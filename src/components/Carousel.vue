@@ -2,14 +2,8 @@
   <div class="carousel">
     <slot :currentSlide="currentSlide" />
 
-    <div
-      v-if="
-        navigationEnable === true ||
-        (navigationEnable === 'mobileOnly' && isMobile)
-      "
-      class="navigate"
-    >
-      <div class="toggle-page left" v-if="isMobile">
+    <div v-if="navigationEnable === true" class="navigate">
+      <div class="toggle-page left">
         <button @click="goToPreviousSlide">
           <span
             ><svg
@@ -30,7 +24,7 @@
           </span>
         </button>
       </div>
-      <div class="toggle-page right" v-if="isMobile">
+      <div class="toggle-page right">
         <button @click="goToNextSlide">
           <span
             ><svg
@@ -67,26 +61,11 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref } from "vue";
 
 export default {
   props: ["autoPlay", "duration", "navigation", "pagination", "sliderCount"],
   setup(props) {
-    const windowWidth = ref(window.innerWidth);
-    const isMobile = computed(() => windowWidth.value <= 768); // Or whatever size you consider to be "mobile"
-
-    const updateWindowWidth = () => {
-      windowWidth.value = window.innerWidth;
-    };
-
-    onMounted(() => {
-      window.addEventListener("resize", updateWindowWidth);
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener("resize", updateWindowWidth);
-    });
-
     const currentSlide = ref(1);
     const getSlideCount = ref(props.sliderCount);
     const autoPlayEnable = ref(
@@ -143,7 +122,6 @@ export default {
     }
 
     return {
-      isMobile,
       currentSlide,
       goToNextSlide,
       goToPreviousSlide,

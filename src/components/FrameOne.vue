@@ -1,11 +1,6 @@
 <template>
   <div>
-    <Carousel
-      :autoPlay="false"
-      :sliderCount="2"
-      :navigation="mobileOnly"
-      v-slot="{ currentSlide }"
-    >
+    <Carousel :autoPlay="false" :sliderCount="2" v-slot="{ currentSlide }">
       <Slide v-show="currentSlide === 1">
         <div
           class="relative flex min-h-screen items-center justify-center bg-cover bg-center"
