@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import AboutView from "../views/AboutView.vue";
+import MenuView from "../views/MenuView.vue";
+import ContactView from "../views/ContactView.vue";
+import GalleryView from "../views/GalleryView.vue";
 import BestSeller from "../components/BestSeller.vue";
 import LunchBuffet from "../components/LunchBuffet.vue";
 import ALaCarte from "../components/ALaCarte.vue";
@@ -14,12 +18,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/about",
     name: "about",
-    component: () => import("../views/AboutView.vue"),
+    component: AboutView,
   },
   {
     path: "/menu",
     name: "menu",
-    component: () => import("../views/MenuView.vue"),
+    component: MenuView,
     children: [
       {
         path: "bestseller",
@@ -46,12 +50,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/contact",
     name: "contact",
-    component: () => import("../views/ContactView.vue"),
+    component: ContactView,
   },
   {
     path: "/gallery",
     name: "gallery",
-    component: () => import("../views/GalleryView.vue"),
+    component: GalleryView,
   },
 ];
 
