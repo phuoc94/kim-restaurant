@@ -28,7 +28,6 @@
       id="datepicker"
       data-te-datepicker-init
       data-te-format="dd/mm/yyyy"
-      data-te-input-wrapper-init
     >
       <input
         type="text"
@@ -44,7 +43,6 @@
       class="relative col-span-2"
       data-te-with-icon="false"
       data-te-timepicker-init
-      data-te-input-wrapper-init
       id="timepicker-just-input"
     >
       <input
