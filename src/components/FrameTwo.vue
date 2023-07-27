@@ -24,7 +24,7 @@ export default {
           <button class="button">Buffet menu</button>
         </router-link>
 
-        <router-link :to="{ path: '/menu/lunchbuffet' }">
+        <router-link :to="{ path: '/menu/alacarte' }">
           <button class="button">A-la-carté menu</button>
         </router-link>
 
