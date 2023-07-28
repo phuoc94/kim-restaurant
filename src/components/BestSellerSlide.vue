@@ -14,8 +14,8 @@
         <Card
           :title="card.title"
           :description="card.description"
-          :price="card.price"
-          :image="card.image"
+          :price="card.prices[0].price.toFixed(2)"
+          :image="card.image.url"
         />
       </div>
     </div>
@@ -30,44 +30,50 @@
   </div>
 </template>
 
-<script lang="ts">
-import { reactive } from "vue";
+<script setup>
+import { ref, onMounted } from "vue";
 import Card from "@/components/BestSellerCard.vue";
+import axios from "axios";
+const API_URL = process.env.VUE_APP_API_URL;
 
-export default {
-  components: { Card },
-  setup() {
-    const cards = reactive([
-      {
-        title: "Gỏi cuốn",
-        description:
-          "Sekoitus salaattia, paprikaa, kurkkua, riisinuudeleita, hoisin-kastiketta ja maapähkinöitä",
-        price: "7,50",
-        image: require("@/assets/mihoanhthanh.png"),
-      },
-      {
-        title: "Phở",
-        description:
-          "Perinteisiä vietnamilaisia nuudeleita kanan ja naudanlihan kera",
-        price: "13,50",
-        image: require("@/assets/mihoanhthanh.png"),
-      },
-      {
-        title: "Hủ tiếu xào",
-        description: "Riisinuudeliwokki vihannesten kera",
-        price: "7,50",
-        image: require("@/assets/mihoanhthanh.png"),
-      },
-      {
-        title: "Curry",
-        description:
-          "Keltainen curry/ Punainen curry/ Vihreä curry/ Massaman-curry/ Tom kha",
-        price: "13,50",
-        image: require("@/assets/mihoanhthanh.png"),
-      },
-    ]);
+const cards = ref([]);
+const loading = ref(true);
+const error = ref(null);
 
-    return { cards };
-  },
+const fetchDishes = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+        {
+          menus(first: 8, where: {displayHome: true}) {
+          title
+          description
+          prices(first: 1, orderBy: price_ASC) {
+            price
+          }
+          image {
+            url(
+              transformation: {document: {output: {format: webp}}, image: {resize: {width: 300}}}
+              )
+          }
+        }
+        }
+      `,
+    });
+
+    if (response.data.errors) {
+      console.log("GraphQL errors:", response.data.errors);
+    } else {
+      cards.value = response.data.data.menus;
+    }
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
+onMounted(fetchDishes);
 </script>

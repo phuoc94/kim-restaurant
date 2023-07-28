@@ -18,34 +18,22 @@
       <h2 class="card-title mb-2 text-center font-serif text-xl font-bold">
         {{ title }}
       </h2>
-      <p class="card-description text-center font-montserrat">
-        {{ description }}
-      </p>
+      <p
+        class="card-description text-center font-montserrat"
+        v-html="formattedDescription"
+      ></p>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: String,
-      required: true,
-    },
-  },
-};
+<script setup>
+import { defineProps, computed } from "vue";
+
+const props = defineProps(["title", "description", "price", "image"]);
+
+const formattedDescription = computed(() =>
+  props.description.replace(/\n/g, "<br/>")
+);
 </script>
 
 <style scoped></style>
