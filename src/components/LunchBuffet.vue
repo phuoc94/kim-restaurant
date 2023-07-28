@@ -15,7 +15,7 @@
         >
           <h1 class="h1 font-serif font-bold text-white">{{ dayMenu.day }}</h1>
           <div
-            v-for="dish in dayMenu.dish"
+            v-for="dish in dayMenu.lunchBuffetItems"
             :key="dish.title"
             class="flex w-full font-montserrat text-white sm:px-8"
           >
@@ -31,202 +31,46 @@
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import { ref, onMounted } from "vue";
+import axios from "axios";
+const API_URL = process.env.VUE_APP_API_URL;
 
-export default {
-  setup() {
-    const menu = ref([
-      {
-        day: "MA",
-        dish: [
-          {
-            title: "Punainen curry kana",
-            dietary: "L, G",
-          },
-          {
-            title: "Naudanliha bambunversojen ja sienten kera",
-            dietary: "L",
-          },
-          {
-            title: "Friteerattu kananrinta",
-            dietary: "L, G",
-          },
-          {
-            title: "Paistettua tofua ja inkivääri vihanneksia",
-            dietary: "L, G",
-          },
-          {
-            title: "Porsaanlihaa pekingin kastikkella",
-            dietary: "L, G",
-          },
-          {
-            title: "Sipulirenkaat",
-            dietary: "L, G",
-          },
-          {
-            title: "Riisinuudeli wokk",
-            dietary: "L, G",
-          },
-          {
-            title: "Paitettua nuudelia ja vihanneksia",
-            dietary: "L, G",
-          },
-        ],
-      },
-      {
-        day: "TI",
-        dish: [
-          {
-            title: "Punainen curry kana",
-            dietary: "L, G",
-          },
-          {
-            title: "Naudanliha bambunversojen ja sienten kera",
-            dietary: "L, G",
-          },
-          {
-            title: "Friteerattu kananrinta",
-            dietary: "L, G",
-          },
-          {
-            title: "Paistettua tofua ja inkivääri vihanneksia",
-            dietary: "L, G",
-          },
-          {
-            title: "Porsaanlihaa pekingin kastikkella",
-            dietary: "L, G",
-          },
-          {
-            title: "Sipulirenkaat",
-            dietary: "L, G",
-          },
-          {
-            title: "Riisinuudeli wokk",
-            dietary: "L, G",
-          },
-          {
-            title: "Paitettua nuudelia ja vihanneksia",
-            dietary: "L, G",
-          },
-        ],
-      },
-      {
-        day: "KE",
-        dish: [
-          {
-            title: "Punainen curry kana",
-            dietary: "L, G",
-          },
-          {
-            title: "Naudanliha bambunversojen ja sienten kera",
-            dietary: "L, G",
-          },
-          {
-            title: "Friteerattu kananrinta",
-            dietary: "L, G",
-          },
-          {
-            title: "Paistettua tofua ja inkivääri vihanneksia",
-            dietary: "L, G",
-          },
-          {
-            title: "Porsaanlihaa pekingin kastikkella",
-            dietary: "L, G",
-          },
-          {
-            title: "Sipulirenkaat",
-            dietary: "L, G",
-          },
-          {
-            title: "Riisinuudeli wokk",
-            dietary: "L, G",
-          },
-          {
-            title: "Paitettua nuudelia ja vihanneksia",
-            dietary: "L, G",
-          },
-        ],
-      },
-      {
-        day: "TO",
-        dish: [
-          {
-            title: "Punainen curry kana",
-            dietary: "L, G",
-          },
-          {
-            title: "Naudanliha bambunversojen ja sienten kera",
-            dietary: "L, G",
-          },
-          {
-            title: "Friteerattu kananrinta",
-            dietary: "L, G",
-          },
-          {
-            title: "Paistettua tofua ja inkivääri vihanneksia",
-            dietary: "L, G",
-          },
-          {
-            title: "Porsaanlihaa pekingin kastikkella",
-            dietary: "L, G",
-          },
-          {
-            title: "Sipulirenkaat",
-            dietary: "L, G",
-          },
-          {
-            title: "Riisinuudeli wokk",
-            dietary: "L, G",
-          },
-          {
-            title: "Paitettua nuudelia ja vihanneksia",
-            dietary: "L, G",
-          },
-        ],
-      },
-      {
-        day: "PE",
-        dish: [
-          {
-            title: "Punainen curry kana",
-            dietary: "L, G",
-          },
-          {
-            title: "Naudanliha bambunversojen ja sienten kera",
-            dietary: "L, G",
-          },
-          {
-            title: "Friteerattu kananrinta",
-            dietary: "L, G",
-          },
-          {
-            title: "Paistettua tofua ja inkivääri vihanneksia",
-            dietary: "L, G",
-          },
-          {
-            title: "Porsaanlihaa pekingin kastikkella",
-            dietary: "L, G",
-          },
-          {
-            title: "Sipulirenkaat",
-            dietary: "L, G",
-          },
-          {
-            title: "Riisinuudeli wokk",
-            dietary: "L, G",
-          },
-          {
-            title: "Paitettua nuudelia ja vihanneksia",
-            dietary: "L, G",
-          },
-        ],
-      },
-    ]);
+const menu = ref([]);
+const loading = ref(true);
+const error = ref(null);
 
-    return { menu };
-  },
+const fetchDishes = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+        {
+          lunchBuffets {
+            day
+            lunchBuffetItems {
+              title
+              dietary
+            }
+          }
+        }
+      `,
+    });
+
+    if (response.data.errors) {
+      console.log("GraphQL errors:", response.data.errors);
+    } else {
+      menu.value = response.data.data.lunchBuffets;
+    }
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
+onMounted(fetchDishes);
 </script>
 
 <style></style>
