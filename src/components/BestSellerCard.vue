@@ -1,12 +1,12 @@
 <template>
-  <div class="card min-h-full rounded bg-zinc-50 text-neutral-900">
+  <div class="min-h-full rounded bg-zinc-50 text-neutral-900">
     <div class="relative">
-      <img :src="image" :alt="title" class="card-image aspect-video px-3" />
+      <img :src="image" :alt="title" class="aspect-video" />
       <div
         class="absolute bottom-[-28px] right-3 h-14 w-14 rounded-full bg-yellow-500"
       >
         <div
-          class="card-price flex h-full flex-col items-center justify-center text-center"
+          class="flex h-full flex-col items-center justify-center text-center"
         >
           <div class="text-xs">from</div>
           <div class="text-sm">{{ price }}</div>
@@ -14,14 +14,11 @@
       </div>
     </div>
 
-    <div class="card-body px-3 py-10">
-      <h2 class="card-title mb-2 text-center font-serif text-xl font-bold">
+    <div class="px-3 py-10">
+      <h2 class="mb-2 text-center font-serif text-xl font-bold">
         {{ title }}
       </h2>
-      <p
-        class="card-description text-center font-montserrat"
-        v-html="formattedDescription"
-      ></p>
+      <p class="text-center font-montserrat" v-html="formattedDescription"></p>
     </div>
   </div>
 </template>
