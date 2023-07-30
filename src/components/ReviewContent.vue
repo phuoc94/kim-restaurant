@@ -4,11 +4,11 @@
       <div class="stars flex justify-center gap-4">
         <i
           class="icon pi pi-star-fill text-yellow-500"
-          v-for="i in slide.rating"
+          v-for="i in slide.ratingStar"
           :key="i"
         ></i>
       </div>
-      <p class="my-4 font-montserrat text-gray-500">{{ slide.text }}</p>
+      <p class="my-4 font-montserrat text-gray-500">{{ slide.reviewText }}</p>
       <h4 class="font-inter font-bold text-gray-900">{{ slide.reviewer }}</h4>
     </div>
   </div>

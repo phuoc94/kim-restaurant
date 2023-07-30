@@ -8,7 +8,10 @@
         />
       </div>
 
+      <div v-if="loading">Loading...</div>
+      <div v-else-if="error">Error: {{ error }}</div>
       <div
+        v-else
         class="relative mx-auto max-w-xl -translate-y-28 text-center md:absolute md:left-[40%] md:mr-12 md:translate-y-0 md:self-center lg:left-[50%]"
       >
         <Carousel
@@ -19,7 +22,7 @@
           v-slot="{ currentSlide }"
         >
           <div class="m-8 pt-8 md:mx-16">
-            <Slide v-for="(slide, index) in slides" :key="index">
+            <Slide v-for="(slide, index) in reviews" :key="index">
               <ReviewContent
                 v-show="currentSlide === index + 1"
                 :slide="slide"
@@ -32,35 +35,48 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from "vue";
 import Carousel from "@/components/Carousel.vue";
 import Slide from "@/components/Slide.vue";
 import ReviewContent from "@/components/ReviewContent.vue";
 
-export default {
-  name: "FrameThree",
-  components: {
-    Carousel,
-    Slide,
-    ReviewContent,
-  },
-  setup() {
-    const slides = [
-      {
-        rating: 5,
-        text: "Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam sit. Vitae congue ultrices neque penatibus mi in quisque. Leo in cursus enim magnis ante. Proin iaculis platea ipsum sagittis ac eu aliquam quis. Ornare tincidunt tempus semper",
-        reviewer: "Ama Ampomah, Google Review",
-      },
-      {
-        rating: 4,
-        text: "Lorem ipsum dolor sit amet consectetur. Tortor massa nisl quam sit. Vitae congue ultrices neque penatibus mi in quisque. Leo in cursus enim magnis ante. Proin iaculis platea ipsum sagittis ac eu aliquam quis. Ornare tincidunt tempus semper",
-        reviewer: "Ama Ampomahsss, Google Review",
-      },
-    ];
+import axios from "axios";
+const API_URL = process.env.VUE_APP_API_URL;
 
-    const slideLen = slides.length;
+const reviews = ref([]);
+const loading = ref(true);
+const error = ref(null);
+let slideLen = ref(0);
 
-    return { slideLen, slides };
-  },
+const fetchDishes = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+        {
+          reviews {
+            reviewer
+            ratingStar
+            reviewText
+          }
+        }
+      `,
+    });
+
+    if (response.data.errors) {
+      console.log("GraphQL errors:", response.data.errors);
+    } else {
+      reviews.value = response.data.data.reviews;
+      slideLen.value = reviews.value.length;
+    }
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
+onMounted(fetchDishes);
 </script>
