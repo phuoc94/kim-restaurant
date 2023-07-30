@@ -1,6 +1,7 @@
 <template>
   <div class="bg-neutral-900/80">
     <div class="pt-16 md:flex md:px-0 md:py-0">
+      <!-- Left-side image -->
       <div class="px-4 md:basis-2/3">
         <img
           class="aspect-video w-full rounded-bl-[10px] rounded-br-[50px] rounded-tl-[50px] rounded-tr-[10px] object-cover md:min-h-screen md:rounded-none"
@@ -8,6 +9,7 @@
         />
       </div>
 
+      <!-- Right-side carousel -->
       <div v-if="loading">Loading...</div>
       <div v-else-if="error">Error: {{ error }}</div>
       <div
@@ -40,29 +42,35 @@ import { ref, onMounted } from "vue";
 import Carousel from "@/components/Carousel.vue";
 import Slide from "@/components/Slide.vue";
 import ReviewContent from "@/components/ReviewContent.vue";
-
+import { getBrowserLanguage } from "@/utils/languageUtils";
 import axios from "axios";
+
 const API_URL = process.env.VUE_APP_API_URL;
 
+// Reactive variables
 const reviews = ref([]);
 const loading = ref(true);
 const error = ref(null);
-let slideLen = ref(0);
+const slideLen = ref(0);
 
-const fetchDishes = async () => {
+// Fetch reviews from the server
+const fetchReviews = async () => {
   try {
     loading.value = true;
     error.value = null;
     const response = await axios.post(API_URL, {
       query: `
-        {
-          reviews {
+        query($locales: [Locale!]!){
+          reviews(locales: $locales, where: {reviewText_not: ""}) {
             reviewer
             ratingStar
             reviewText
           }
         }
       `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
     });
 
     if (response.data.errors) {
@@ -78,5 +86,10 @@ const fetchDishes = async () => {
   }
 };
 
-onMounted(fetchDishes);
+// Fetch reviews when the component is mounted
+onMounted(fetchReviews);
 </script>
+
+<style scoped>
+/* Add custom styles if needed */
+</style>

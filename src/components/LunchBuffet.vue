@@ -40,14 +40,22 @@ const menu = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
+const getBrowserLanguage = () => {
+  const browserLanguage = navigator.language.substr(0, 2);
+  if (browserLanguage !== "fi" && browserLanguage !== "en") {
+    return "en";
+  }
+  return browserLanguage;
+};
+
 const fetchDishes = async () => {
   try {
     loading.value = true;
     error.value = null;
     const response = await axios.post(API_URL, {
       query: `
-        {
-          lunchBuffets {
+      query($locales: [Locale!]!){
+        lunchBuffets(locales: $locales) {
             day
             lunchBuffetItems {
               title
@@ -56,6 +64,9 @@ const fetchDishes = async () => {
           }
         }
       `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
     });
 
     if (response.data.errors) {

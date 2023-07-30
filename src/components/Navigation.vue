@@ -1,5 +1,6 @@
 <template>
   <nav class="flex flex-wrap items-center justify-end px-4 lg:container">
+    <!-- Social media links and "Book a table" button (large screens) -->
     <div
       class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >
@@ -16,6 +17,8 @@
         <button class="button">Book a table</button>
       </router-link>
     </div>
+
+    <!-- Logo -->
     <div
       class="flex flex-shrink-0 basis-1/3 items-center justify-center pb-6 pt-1 lg:basis-2/12"
     >
@@ -23,7 +26,9 @@
         <img class="h-14 lg:h-20" src="@/assets/logo.webp" />
       </router-link>
     </div>
-    <div class="flex basis-1/3 justify-end lg:hidden lg:basis-5/12">
+
+    <!-- Hamburger menu button (small screens) -->
+    <div class="flex basis-1/3 justify-end lg:hidden">
       <button @click="open = !open" class="flex items-center px-3 py-2">
         <span v-if="!open"
           ><svg
@@ -45,23 +50,28 @@
         <i v-else class="icon pi pi-times text-xl"></i>
       </button>
     </div>
+
+    <!-- Navigation menu (small and large screens) -->
     <div
       :class="{ block: open, hidden: !open }"
-      class="block w-full flex-grow text-center lg:order-first lg:flex lg:w-auto lg:items-center lg:text-left"
+      class="block w-full flex-grow text-center lg:order-first lg:flex lg:w-auto lg:basis-5/12 lg:items-center lg:text-left"
     >
-      <div class="text-sm lg:flex-grow">
+      <div class="gap-4 lg:flex">
+        <!-- Menu items -->
         <router-link
           v-for="link in menuItems"
-          :key="link.id"
-          :to="link.route"
-          class="mt-4 block lg:mr-4 lg:mt-0 lg:inline-block"
+          :key="link.path"
+          :to="link.path"
+          class="mt-4 block lg:mt-0 lg:inline-block"
           :class="{ 'router-link-active': isActiveRoute(link) }"
         >
-          <span class="link font-serif text-2xl text-gray-900">{{
+          <span class="link font-serif text-lg text-gray-900">{{
             link.label
           }}</span>
         </router-link>
       </div>
+
+      <!-- "Book a table" button (small screens) -->
       <div class="my-4 lg:hidden">
         <router-link v-if="route.path === '/'" :to="{ hash: '#reservation' }">
           <button class="button">Book a table</button>
@@ -74,45 +84,74 @@
   </nav>
 </template>
 
-<script>
-import { ref, watch } from "vue";
+<script setup>
+import { ref, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import "primeicons/primeicons.css";
+import { getBrowserLanguage } from "@/utils/languageUtils";
+import axios from "axios";
 
-export default {
-  setup() {
-    const open = ref(false);
-    const route = useRoute();
+const API_URL = process.env.VUE_APP_API_URL;
 
-    const isActiveRoute = (menuItem) => {
-      return (
-        (route.path === menuItem.route || route.path.startsWith(`/menu/`)) &&
-        menuItem.label === "Menu"
-      );
-    };
+// Reactive variables
+const open = ref(false);
+const route = useRoute();
+const menuItems = ref([]);
+const loading = ref(true);
+const error = ref(null);
 
-    const menuItems = ref([
-      { id: 1, label: "Home", route: "/" },
-      { id: 2, label: "Menu", route: "/menu/bestseller" },
-      { id: 3, label: "About", route: "/about" },
-      { id: 4, label: "Contact", route: "/contact" },
-      { id: 5, label: "Gallery", route: "/gallery" },
-    ]);
-    watch(route, () => {
-      open.value = false;
+// Check if a menu item is active
+const isActiveRoute = (menuItem) => {
+  return (
+    (route.path === menuItem.route || route.path.startsWith(`/menu/`)) &&
+    menuItem.label === "Menu"
+  );
+};
+
+// Fetch menu items from the server
+const fetchLocales = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+        query($locales: [Locale!]!){
+          translation(locales: $locales, where: {component: "navigationItems"}) {
+            navigationItems {
+              path
+              label
+            }
+          }
+        }
+      `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
     });
 
-    return {
-      route,
-      open,
-      menuItems,
-      isActiveRoute,
-    };
-  },
+    if (response.data.errors) {
+      console.error("GraphQL errors:", response.data.errors);
+    } else {
+      menuItems.value = response.data.data.translation.navigationItems;
+    }
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
+// Watch for changes in the route and close the menu on navigation
+watch(route, () => {
+  open.value = false;
+});
+
+// Fetch menu items when the component is mounted
+onMounted(fetchLocales);
 </script>
 
 <style scoped>
+/* Styling for active router links */
 .router-link-active > .link,
 .router-link-exact-active > .link {
   @apply font-bold text-neutral-900;

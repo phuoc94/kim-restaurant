@@ -3,22 +3,23 @@
     <div
       class="container grid max-w-md grid-cols-2 justify-center gap-5 px-4 py-5 lg:max-w-4xl lg:grid-cols-4"
     >
+      <!-- Navigation tabs -->
       <router-link
-        :to="{ name: tab.id }"
+        :to="{ path: tab.path }"
         v-for="(tab, index) in tabs"
         :key="index"
       >
         <div
           class="col-span-1 cursor-pointer rounded border border-yellow-500 px-4 py-1 text-center font-serif text-xl"
           :class="{
-            'bg-yellow-500 font-bold text-black': currentTab === tab.id,
-            'text-white': currentTab !== tab.id,
+            'bg-yellow-500 font-bold text-black': currentTab === tab.path,
+            'text-white': currentTab !== tab.path,
           }"
         >
           <span>
             <i
               class="icon pi pi-star-fill text-yellow-200"
-              v-if="currentTab === tab.id"
+              v-if="currentTab === tab.path"
             ></i>
           </span>
           {{ tab.label }}
@@ -26,35 +27,66 @@
       </router-link>
     </div>
   </div>
-  <router-view> </router-view>
+  <router-view></router-view>
 </template>
 
-<script>
-import { ref, watch } from "vue";
+<script setup>
+import { ref, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import axios from "axios";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
-export default {
-  setup() {
-    const tabs = ref([
-      { id: "bestseller", label: "Bestseller" },
-      { id: "lunchbuffet", label: "Lunchbuffet" },
-      { id: "alacarte", label: "A-la-carté" },
-      { id: "reservation", label: "Reserve a table" },
-    ]);
+const API_URL = process.env.VUE_APP_API_URL;
 
-    const route = useRoute();
-    const currentTab = ref(route.name);
+// Reactive variables
+const tabs = ref([]);
+const route = useRoute();
+const currentTab = ref(route.path);
+const loading = ref(true);
+const error = ref(null);
 
-    watch(route, () => {
-      currentTab.value = route.name;
+// Fetch menu navigation tabs from the server
+const fetchLocales = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+        query($locales: [Locale!]!){
+          translation(locales: $locales, where: {component: "menuNav"}) {
+            navigationItems {
+              path
+              label
+            }
+          }
+        }
+      `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
     });
 
-    return {
-      tabs,
-      currentTab,
-    };
-  },
+    if (response.data.errors) {
+      console.error("GraphQL errors:", response.data.errors);
+    } else {
+      tabs.value = response.data.data.translation.navigationItems;
+    }
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
+// Watch for changes in the route and update the currentTab variable
+watch(route, () => {
+  currentTab.value = route.path;
+});
+
+// Fetch menu navigation tabs when the component is mounted
+onMounted(fetchLocales);
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Add custom styles for active tabs and other styles if needed */
+</style>

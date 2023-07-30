@@ -1,47 +1,52 @@
 <template>
   <div>
-    <Carousel :autoPlay="false" :sliderCount="2" v-slot="{ currentSlide }">
-      <Slide v-show="currentSlide === 1">
-        <div
-          class="relative flex min-h-screen items-center justify-center bg-cover bg-center"
-        >
-          <img
-            src="@/assets/banner-1.webp"
-            alt="Lunch Buffet"
-            class="absolute inset-0 z-0 h-full max-h-screen w-full object-cover"
-          />
-          <div class="relative z-10 mx-14 text-center text-white">
-            <h1 class="h1 mb-6 font-serif font-bold">Lunch Buffet</h1>
-            <p class="mb-8 font-inter">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
-            <router-link :to="{ path: '/menu/lunchbuffet' }">
-              <button class="button">Buffet menu</button>
-            </router-link>
-          </div>
-        </div>
-      </Slide>
-      <Slide v-show="currentSlide === 2">
-        <BestSellerSlide />
-      </Slide>
-    </Carousel>
+    <template v-if="showAll">
+      <Carousel
+        :autoPlay="false"
+        :sliderCount="sliderCount"
+        v-slot="{ currentSlide }"
+      >
+        <Slide v-show="currentSlide === 1">
+          <LunchBuffetSlide />
+        </Slide>
+        <Slide v-show="currentSlide === 2">
+          <BestSellerSlide />
+        </Slide>
+      </Carousel>
+    </template>
+
+    <template v-else>
+      <Carousel :autoPlay="false" :sliderCount="1" v-slot="{ currentSlide }">
+        <Slide v-show="currentSlide === 1">
+          <LunchBuffetSlide />
+        </Slide>
+      </Carousel>
+    </template>
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
 import Carousel from "@/components/Carousel.vue";
 import Slide from "@/components/Slide.vue";
 import BestSellerSlide from "@/components/BestSellerSlide.vue";
+import LunchBuffetSlide from "@/components/LunchBuffetSlide.vue";
 
-export default {
-  name: "FrameOne",
-  components: {
-    Carousel,
-    Slide,
-    BestSellerSlide,
-  },
+const sliderCount = ref(2);
+const showAll = ref(true);
+
+const handleWindowResize = () => {
+  showAll.value = window.innerWidth > 1024;
 };
+
+onMounted(() => {
+  handleWindowResize();
+  window.addEventListener("resize", handleWindowResize);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleWindowResize);
+});
 </script>
 
 <style scoped></style>
