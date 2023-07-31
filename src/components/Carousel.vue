@@ -76,9 +76,13 @@ export default {
     );
     const intervalId = ref(null);
 
-    const paginationEnable = ref(props.pagination === undefined ? true : false);
+    // If sliderCount is not 1 or if prop is falsy.
+    const paginationEnable = ref(
+      !(props.sliderCount === 1 || !props.pagination)
+    );
+    // If sliderCount is not 1 or if prop is falsy.
     const navigationEnable = ref(
-      props.navigation === undefined ? true : props.navigation
+      !(props.sliderCount === 1 || !props.navigation)
     );
 
     const goToNextSlide = () => {

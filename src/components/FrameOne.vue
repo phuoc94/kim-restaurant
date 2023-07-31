@@ -4,6 +4,8 @@
       <Carousel
         :autoPlay="false"
         :sliderCount="sliderCount"
+        :pagination="true"
+        :navigation="true"
         v-slot="{ currentSlide }"
       >
         <Slide v-show="currentSlide === 1">
