@@ -102,7 +102,10 @@ const error = ref(null);
 
 // Check if a menu item is active
 const isActiveRoute = (menuItem) => {
-  return route.path === menuItem.route || route.path.startsWith(`/menu/`);
+  return (
+    (route.path === menuItem.route || route.path.startsWith(`/menu/`)) &&
+    menuItem.path.startsWith(`/menu/`)
+  );
 };
 
 // Fetch menu items from the server
