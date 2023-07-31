@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-full rounded bg-zinc-50 text-neutral-900">
     <div class="relative">
-      <img :src="image" :alt="title" class="aspect-video" />
+      <img :src="image" :alt="title" class="mx-auto aspect-video" />
       <div
         class="absolute bottom-[-28px] right-3 h-14 w-14 rounded-full bg-yellow-500"
       >
