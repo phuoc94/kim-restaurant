@@ -9,7 +9,9 @@
         ></i>
       </div>
       <p class="my-4 font-montserrat text-gray-500">{{ slide.reviewText }}</p>
-      <h4 class="font-inter font-bold text-gray-900">{{ slide.reviewer }}</h4>
+      <h4 class="font-inter font-bold text-gray-900">
+        {{ slide.reviewer }}{{ slide.reviewFrom && ", " + slide.reviewFrom }}
+      </h4>
     </div>
   </div>
 </template>

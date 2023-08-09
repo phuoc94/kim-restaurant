@@ -65,6 +65,7 @@ const fetchReviews = async () => {
             reviewer
             ratingStar
             reviewText
+            reviewFrom
           }
         }
       `,
