@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-zinc-700">
+  <div class="bg-custom-gradient">
     <div class="container flex flex-wrap justify-center gap-y-12 py-8 sm:px-12">
       <div
         v-for="(card, index) in cards"

@@ -7,7 +7,7 @@ import GalleryView from "../views/GalleryView.vue";
 import BestSeller from "../components/BestSeller.vue";
 import LunchBuffet from "../components/LunchBuffet.vue";
 import ALaCarte from "../components/ALaCarte.vue";
-import Reservation from "../components/FrameFour.vue";
+import Reservation from "../components/MenuReservation.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {

@@ -1,17 +1,12 @@
 <template>
-  <div>
+  <div class="bg-custom-gradient">
     <div v-if="error" class="p-64 text-center">
       An error occurred: {{ error }}
     </div>
 
     <div v-else-if="loading" class="p-64 text-center">Loading...</div>
 
-    <div
-      v-else
-      v-for="(dishes, category) in groupedDishes"
-      :key="category"
-      class="bg-gradient-to-r from-yellow-300/70 to-orange-400/70"
-    >
+    <div v-else v-for="(dishes, category) in groupedDishes" :key="category">
       <div class="container px-4 pb-24 pt-6 font-serif">
         <h1 class="h1 mb-12 text-center font-bold lg:text-left">
           {{ category }}

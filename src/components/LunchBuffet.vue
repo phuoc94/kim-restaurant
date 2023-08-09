@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="bg-zinc-700">
-      <div class="container bg-zinc-800 pb-16">
+    <div class="bg-custom-gradient">
+      <div class="pb-16">
         <img src="@/assets/lounasbuffet.webp" />
         <h1
-          class="h1 -translate-y-12 text-center font-serif font-bold text-[#FFBB00] md:-translate-y-20 lg:-translate-y-32"
+          class="h1 -translate-y-12 text-center font-serif font-bold text-black md:-translate-y-20 lg:-translate-y-32"
         >
           12,70€
         </h1>
@@ -13,15 +13,15 @@
           :key="dayMenu.day"
           class="mx-auto max-w-xl px-4 pb-8"
         >
-          <h1 class="h1 font-serif font-bold text-white">{{ dayMenu.day }}</h1>
+          <h1 class="h1 font-serif font-bold text-black">{{ dayMenu.day }}</h1>
           <div
             v-for="dish in dayMenu.lunchBuffetItems"
             :key="dish.title"
-            class="flex w-full font-montserrat text-white sm:px-8"
+            class="flex w-full font-montserrat sm:px-8"
           >
             <span>{{ dish.title }}</span>
             <span
-              class="mx-1 flex-1 -translate-y-1 border-b-2 border-dotted border-white"
+              class="mx-1 flex-1 -translate-y-1 border-b-2 border-dotted border-black"
             ></span>
             <span class="w-10">{{ dish.dietary }}</span>
           </div>

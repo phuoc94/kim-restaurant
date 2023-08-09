@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-zinc-700">
+  <div class="bg-white lg:bg-custom-gradient">
     <div
       class="container grid max-w-md grid-cols-2 justify-center gap-5 px-4 py-5 lg:max-w-4xl lg:grid-cols-4"
     >
@@ -12,8 +12,7 @@
         <div
           class="col-span-1 cursor-pointer rounded border border-yellow-500 px-4 py-1 text-center font-serif text-xl"
           :class="{
-            'bg-yellow-500 font-bold text-black': currentTab === tab.path,
-            'text-white': currentTab !== tab.path,
+            'bg-yellow-500 font-bold': currentTab === tab.path,
           }"
         >
           <span>

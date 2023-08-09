@@ -55,8 +55,8 @@
         value="10:00"
       />
     </div>
-    <div class="col-span-2 rounded border border-neutral-900 px-8">
-      <select name="num_people" class="w-full bg-white" style="height: 78px">
+    <div class="col-span-2 rounded border border-neutral-900 bg-white px-8">
+      <select name="num_people" class="w-full" style="height: 78px">
         <option value="1">1 person</option>
         <option value="2" selected>2 people</option>
         <option value="3">3 people</option>

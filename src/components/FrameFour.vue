@@ -1,5 +1,5 @@
 <template>
-  <div class="container bg-white px-4 pt-16 text-center" id="reservation">
+  <div class="container px-4 pt-16 text-center" id="reservation">
     <h1 class="h1 font-serif font-bold text-neutral-900/80">
       Make a Reservation
     </h1>
