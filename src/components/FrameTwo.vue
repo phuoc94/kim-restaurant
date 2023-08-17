@@ -18,7 +18,7 @@
 
       <div class="flex flex-wrap justify-center gap-4 xl:justify-start">
         <router-link
-          v-for="(link, index) in content.links"
+          v-for="(link, index) in content.buttons"
           :key="index"
           :to="link.path || { hash: '#reservation' }"
         >
@@ -47,7 +47,6 @@ const API_URL = process.env.VUE_APP_API_URL;
 const content = ref(null); // Initialize content with null
 const loading = ref(true);
 const error = ref(null);
-const button = ref();
 
 const fetchContent = async () => {
   try {
@@ -59,7 +58,7 @@ const fetchContent = async () => {
         contents(where: {contentId: "Wecome-to-Restaurant-Section"}, locales: $locales) {
           title
           paragraph
-          links{
+          buttons{
             path
             label
           }
@@ -75,7 +74,6 @@ const fetchContent = async () => {
       console.log("GraphQL errors:", response.data.errors);
     } else {
       content.value = response.data.data.contents[0];
-      button.value = response.data.data.links[0];
     }
   } catch (e) {
     error.value = e.message;
