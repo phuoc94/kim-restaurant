@@ -1,12 +1,12 @@
 <template>
   <div>
     <img class="max-h-screen w-full" src="@/assets/about_img.webp" />
-    <div class="bg-zinc-700 py-24 md:py-32 lg:py-40">
+    <div class="bg-custom-gradient py-24 md:py-32 lg:py-40">
       <h1 class="h1 text-center font-serif font-bold text-amber-400">
         Kim Ravintola
       </h1>
       <div
-        class="mx-auto mt-8 flex max-w-5xl flex-col gap-8 px-4 text-justify text-white md:flex-row"
+        class="mx-auto mt-8 flex max-w-5xl flex-col gap-8 px-4 text-justify md:flex-row"
       >
         <div>
           <p>
