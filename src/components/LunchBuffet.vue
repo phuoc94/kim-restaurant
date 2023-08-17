@@ -6,24 +6,28 @@
         <h1
           class="h1 -translate-y-12 text-center font-serif font-bold text-black md:-translate-y-20 lg:-translate-y-32"
         >
-          12,70€
+          {{ parseFloat(lunchbuffetPrice).toFixed(2) }} €
         </h1>
-        <div
-          v-for="dayMenu in menu"
-          :key="dayMenu.day"
-          class="mx-auto max-w-xl px-4 pb-8"
-        >
-          <h1 class="h1 font-serif font-bold text-black">{{ dayMenu.day }}</h1>
+        <div class="container grid grid-cols-2 gap-16">
           <div
-            v-for="dish in dayMenu.lunchBuffetItems"
-            :key="dish.title"
-            class="flex w-full font-montserrat sm:px-8"
+            v-for="dayMenu in menu"
+            :key="dayMenu.day"
+            class="rounded bg-white p-8 shadow-md"
           >
-            <span>{{ dish.title }}</span>
-            <span
-              class="mx-1 flex-1 -translate-y-1 border-b-2 border-dotted border-black"
-            ></span>
-            <span class="w-10">{{ dish.dietary }}</span>
+            <h1 class="h1 mb-2 font-serif font-bold text-amber-400">
+              {{ dayMenu.day }}
+            </h1>
+            <div
+              v-for="dish in dayMenu.lunchBuffetItems"
+              :key="dish.title"
+              class="flex w-full font-montserrat"
+            >
+              <span>{{ dish.title }}</span>
+              <span
+                class="mx-1 flex-1 -translate-y-1 border-b-2 border-dotted border-black"
+              ></span>
+              <span class="w-10">{{ dish.dietary }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -41,6 +45,7 @@ const API_URL = process.env.VUE_APP_API_URL;
 const menu = ref([]);
 const loading = ref(true);
 const error = ref(null);
+const lunchbuffetPrice = ref();
 
 const fetchDishes = async () => {
   try {
@@ -51,13 +56,18 @@ const fetchDishes = async () => {
       query($locales: [Locale!]!){
         lunchBuffets(locales: $locales) {
             day
-            lunchBuffetItems {
+            lunchBuffetItems(first: 100) {
               title
               dietary
             }
           }
+        menus(where: {title: "Lunchbuffet"}) {
+          prices{
+            price
+          }
         }
-      `,
+      } 
+    `,
       variables: {
         locales: [getBrowserLanguage()],
       },
@@ -66,6 +76,7 @@ const fetchDishes = async () => {
     if (response.data.errors) {
       console.log("GraphQL errors:", response.data.errors);
     } else {
+      lunchbuffetPrice.value = response.data.data.menus[0].prices[0].price;
       menu.value = response.data.data.lunchBuffets;
     }
   } catch (e) {
