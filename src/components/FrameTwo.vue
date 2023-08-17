@@ -1,11 +1,8 @@
-<script>
-export default {
-  name: "FrameTwo",
-};
-</script>
-
 <template>
-  <div class="container grid grid-cols-1 items-center py-24 lg:grid-cols-2">
+  <div
+    v-if="content"
+    class="container grid grid-cols-1 items-center py-24 lg:grid-cols-2"
+  >
     <div class="lg:margin-0 mt-16 flex basis-1/2 justify-center">
       <img class="image" src="@/assets/mihoanhthanh.webp" />
     </div>
@@ -13,29 +10,79 @@ export default {
       <h1
         class="h1 mb-8 text-center font-libre font-bold text-gray-900 lg:text-left"
       >
-        Wecome to Our Restaurant
+        {{ content.title }}
       </h1>
       <p class="mb-4 text-center font-montserrat text-gray-500 lg:text-left">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+        {{ content.paragraph[0] }}
       </p>
+
       <div class="flex flex-wrap justify-center gap-4 xl:justify-start">
-        <router-link :to="{ path: '/menu/lunchbuffet' }">
-          <button class="button">Buffet menu</button>
-        </router-link>
-
-        <router-link :to="{ path: '/menu/alacarte' }">
-          <button class="button">A-la-carté menu</button>
-        </router-link>
-
-        <router-link :to="{ hash: '#reservation' }">
+        <router-link
+          v-for="(link, index) in content.links"
+          :key="index"
+          :to="link.path || { hash: '#reservation' }"
+        >
           <button
-            class="button-second rounded-md bg-neutral-900 px-8 py-3 font-libre font-bold text-white"
+            :class="{
+              button: link.path && link.path !== '#reservation',
+              'button-second rounded-md bg-neutral-900 px-8 py-3 font-libre font-bold text-white':
+                !link.path || link.path === '#reservation',
+            }"
           >
-            Book a table
+            {{ link.label || "Book a table" }}
           </button>
         </router-link>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from "vue";
+import axios from "axios";
+import { getBrowserLanguage } from "@/utils/languageUtils";
+
+const API_URL = process.env.VUE_APP_API_URL;
+
+const content = ref(null); // Initialize content with null
+const loading = ref(true);
+const error = ref(null);
+const button = ref();
+
+const fetchContent = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+      query($locales: [Locale!]!){
+        contents(where: {contentId: "Wecome-to-Restaurant-Section"}, locales: $locales) {
+          title
+          paragraph
+          links{
+            path
+            label
+          }
+        }
+      } 
+    `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
+    });
+
+    if (response.data.errors) {
+      console.log("GraphQL errors:", response.data.errors);
+    } else {
+      content.value = response.data.data.contents[0];
+      button.value = response.data.data.links[0];
+    }
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
+};
+
+onMounted(fetchContent);
+</script>
