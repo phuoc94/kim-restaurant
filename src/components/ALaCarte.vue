@@ -38,32 +38,10 @@
               class="grid-dietary col-start-3 row-start-1 lg:col-start-3 lg:row-start-1"
             >
               <div class="absolute flex">
-                <div
-                  v-if="dish.vegan"
-                  class="relative ml-[-24px] mt-[1px] md:mt-1"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
+                <div v-if="dish.vegan" class="relative ml-[-24px]">
+                  <span class="text-xl text-[#20890B] md:text-2xl lg:font-bold"
+                    >V,&nbsp;</span
                   >
-                    <path
-                      d="M15 11.063C12.53 13.65 10.059 20 10.059 20C10.059 20 6.529 11.062 3 9"
-                      stroke="#629614"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M20.4958 5.57701L20.9218 10.001C21.1978 12.871 19.0468 15.426 16.1768 15.703C13.3608 15.973 10.8098 13.915 10.5388 11.099C10.4742 10.4294 10.5422 9.75361 10.7389 9.11026C10.9355 8.46691 11.257 7.86861 11.6849 7.34951C12.1128 6.83041 12.6387 6.4007 13.2327 6.0849C13.8267 5.76911 14.4771 5.57342 15.1468 5.50901L19.8628 5.05501C19.9386 5.0477 20.0152 5.05541 20.088 5.07769C20.1609 5.09997 20.2286 5.13639 20.2874 5.18486C20.3462 5.23334 20.3949 5.29292 20.4306 5.36021C20.4664 5.4275 20.4885 5.50117 20.4958 5.57701Z"
-                      stroke="#629614"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
                 </div>
                 <p class="text-xl md:text-2xl lg:font-bold">
                   {{ dish.dietary }}
