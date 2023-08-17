@@ -34,19 +34,13 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import { getBrowserLanguage } from "@/utils/languageUtils";
+
 const API_URL = process.env.VUE_APP_API_URL;
 
 const menu = ref([]);
 const loading = ref(true);
 const error = ref(null);
-
-const getBrowserLanguage = () => {
-  const browserLanguage = navigator.language.substr(0, 2);
-  if (browserLanguage !== "fi" && browserLanguage !== "en") {
-    return "en";
-  }
-  return browserLanguage;
-};
 
 const fetchDishes = async () => {
   try {
