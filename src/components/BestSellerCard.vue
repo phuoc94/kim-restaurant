@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-full rounded bg-zinc-50 text-neutral-900">
+  <div class="min-h-full rounded bg-zinc-50 text-neutral-900 shadow-md">
     <div class="relative">
       <img :src="image" :alt="title" class="mx-auto aspect-video" />
       <div
