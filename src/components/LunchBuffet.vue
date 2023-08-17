@@ -8,7 +8,7 @@
         >
           {{ parseFloat(lunchbuffetPrice).toFixed(2) }} €
         </h1>
-        <div class="container grid grid-cols-2 gap-16">
+        <div class="container grid grid-cols-1 gap-16 px-4 lg:grid-cols-2">
           <div
             v-for="dayMenu in menu"
             :key="dayMenu.day"
