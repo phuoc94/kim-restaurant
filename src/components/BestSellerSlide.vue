@@ -26,8 +26,8 @@
     <p class="mb-8 font-inter text-white">{{ content.paragraph[1] }}</p>
 
     <div class="mb-12">
-      <router-link :to="{ path: button.path }">
-        <button class="button">{{ button.label }}</button>
+      <router-link :to="{ path: content.buttons[0].path }">
+        <button class="button">{{ content.buttons[0].label }}</button>
       </router-link>
     </div>
   </div>
@@ -51,7 +51,6 @@ const API_URL = process.env.VUE_APP_API_URL;
 
 const cards = ref([]);
 const content = ref();
-const button = ref();
 const loading = ref(true);
 const error = ref(null);
 
@@ -77,10 +76,10 @@ const fetchData = async () => {
           contents(where: {contentId: "Best-Seller-Slider"}, locales: $locales) {
             title
             paragraph
-          }
-          links(where: {customId: "Best-Seller-Slider-Button"}, locales: $locales) {
-            path
-            label
+            buttons{
+              path
+              label
+            }
           }
         }
       `,
@@ -95,7 +94,6 @@ const fetchData = async () => {
     } else {
       cards.value = response.data.data.menus;
       content.value = response.data.data.contents[0];
-      button.value = response.data.data.links[0];
     }
   } catch (e) {
     error.value = e.message;
