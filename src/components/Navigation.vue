@@ -2,6 +2,7 @@
   <nav class="flex flex-wrap items-center justify-end px-4 lg:container">
     <!-- Social media links and "Book a table" button (large screens) -->
     <div
+      v-if="buttons.length > 0"
       class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >
       <a
@@ -10,11 +11,11 @@
       >
         <i class="icon pi pi-facebook text-4xl text-black"></i>
       </a>
-      <router-link v-if="route.path === '/'" :to="{ hash: '#reservation' }">
-        <button class="button">Book a table</button>
+      <router-link v-if="route.path === '/'" :to="buttons[0].path">
+        <button class="button">{{ buttons[0].label }}</button>
       </router-link>
-      <router-link v-else :to="{ name: 'contact', hash: '#reservation' }">
-        <button class="button">Book a table</button>
+      <router-link v-else :to="buttons[1].path">
+        <button class="button">{{ buttons[1].label }}</button>
       </router-link>
     </div>
 
@@ -72,12 +73,12 @@
       </div>
 
       <!-- "Book a table" button (small screens) -->
-      <div class="my-4 lg:hidden">
-        <router-link v-if="route.path === '/'" :to="{ hash: '#reservation' }">
-          <button class="button">Book a table</button>
+      <div class="my-4 lg:hidden" v-if="buttons.length > 0">
+        <router-link v-if="route.path === '/'" :to="buttons[0].path">
+          <button class="button">{{ buttons[0].label }}</button>
         </router-link>
-        <router-link v-else :to="{ name: 'contact', hash: '#reservation' }">
-          <button class="button">Book a table</button>
+        <router-link v-else :to="buttons[1].path">
+          <button class="button">{{ buttons[1].label }}</button>
         </router-link>
       </div>
     </div>
@@ -97,6 +98,7 @@ const API_URL = process.env.VUE_APP_API_URL;
 const open = ref(false);
 const route = useRoute();
 const menuItems = ref([]);
+const buttons = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
@@ -122,6 +124,15 @@ const fetchLocales = async () => {
               label
             }
           }
+          links(
+            orderBy: customId_ASC
+            where: {OR: [{customId: "Navigation-Button"}, {customId: "Book-a-table-button"}]}
+            locales: $locales
+          ) {
+            customId
+            label
+            path
+          }
         }
       `,
       variables: {
@@ -133,6 +144,7 @@ const fetchLocales = async () => {
       console.error("GraphQL errors:", response.data.errors);
     } else {
       menuItems.value = response.data.data.translation.navigationItems;
+      buttons.value = response.data.data.links;
     }
   } catch (e) {
     error.value = e.message;
