@@ -11,8 +11,8 @@
     <div class="relative z-10 mx-14 text-center text-white">
       <h1 class="h1 mb-6 font-serif font-bold">{{ content.title }}</h1>
       <p class="mb-8 max-w-3xl font-inter">{{ content.paragraph[0] }}</p>
-      <router-link :to="{ path: button.path }">
-        <button class="button">{{ button.label }}</button>
+      <router-link :to="{ path: content.buttons[0].path }">
+        <button class="button">{{ content.buttons[0].label }}</button>
       </router-link>
     </div>
   </div>
@@ -28,7 +28,6 @@ const API_URL = process.env.VUE_APP_API_URL;
 const content = ref(null); // Initialize content with null
 const loading = ref(true);
 const error = ref(null);
-const button = ref();
 
 const fetchContent = async () => {
   try {
@@ -40,10 +39,10 @@ const fetchContent = async () => {
         contents(where: {contentId: "Lunch-Buffet-Slider"}, locales: $locales) {
           title
           paragraph
-        }
-        links(where: {customId: "Buffet-Menu-Button"}, locales: $locales) {
-          path
-          label
+          buttons{
+            path
+            label
+          }
         }
       } 
     `,
@@ -56,7 +55,6 @@ const fetchContent = async () => {
       console.log("GraphQL errors:", response.data.errors);
     } else {
       content.value = response.data.data.contents[0];
-      button.value = response.data.data.links[0];
     }
   } catch (e) {
     error.value = e.message;
