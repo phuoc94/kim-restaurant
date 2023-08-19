@@ -115,61 +115,47 @@
   </form>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import { ref, onMounted } from "vue";
 import emailjs from "@emailjs/browser";
-
-import { onMounted } from "vue";
 import { Input, Timepicker, Datepicker, initTE } from "tw-elements";
 
-export default {
-  setup() {
-    const form = ref(null);
-    const formError = ref(null);
-    const formSubmitted = ref(false);
+const form = ref(null);
+const formError = ref(null);
+const formSubmitted = ref(false);
 
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0");
-    let yyyy = today.getFullYear();
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, "0");
+let mm = String(today.getMonth() + 1).padStart(2, "0");
+let yyyy = today.getFullYear();
 
-    today = dd + "/" + mm + "/" + yyyy;
+today = `${dd}/${mm}/${yyyy}`;
 
-    const currentDate = ref(today);
+const currentDate = ref(today);
 
-    const sendEmail = () => {
-      emailjs
-        .sendForm(
-          process.env.VUE_APP_EMAILJS_SERVICE_ID,
-          process.env.VUE_APP_EMAILJS_TEMPLATE_ID,
-          form.value,
-          process.env.VUE_APP_EMAILJS_PUBLIC_KEY
-        )
-        .then(
-          (result) => {
-            console.log("SUCCESS!", result.text);
-            formSubmitted.value = true;
-          },
-          (error) => {
-            console.log("FAILED...", error.text);
-            formError.value = error.text;
-          }
-        );
-    };
-
-    onMounted(() => {
-      initTE({ Timepicker, Datepicker, Input });
-    });
-
-    return {
-      form,
-      sendEmail,
-      currentDate,
-      formSubmitted,
-      formError,
-    };
-  },
+const sendEmail = () => {
+  emailjs
+    .sendForm(
+      process.env.VUE_APP_EMAILJS_SERVICE_ID,
+      process.env.VUE_APP_EMAILJS_TEMPLATE_ID,
+      form.value,
+      process.env.VUE_APP_EMAILJS_PUBLIC_KEY
+    )
+    .then(
+      (result) => {
+        console.log("SUCCESS!", result.text);
+        formSubmitted.value = true;
+      },
+      (error) => {
+        console.log("FAILED...", error.text);
+        formError.value = error.text;
+      }
+    );
 };
+
+onMounted(() => {
+  initTE({ Timepicker, Datepicker, Input });
+});
 </script>
 
 <style scoped></style>
