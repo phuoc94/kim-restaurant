@@ -143,6 +143,7 @@ import axios from "axios";
 import emailjs from "@emailjs/browser";
 import { Input, Timepicker, Datepicker, initTE } from "tw-elements";
 import { getBrowserLanguage } from "@/utils/languageUtils";
+import { convertToTranslationObject } from "@/utils/convertToTranslationObject";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -163,16 +164,6 @@ let yyyy = today.getFullYear();
 today = dd + "/" + mm + "/" + yyyy;
 
 const currentDate = ref(today);
-
-function convertToTranslationObject(translationItems) {
-  const translationObject = {};
-
-  for (const item of translationItems) {
-    translationObject[item.customId] = item.text;
-  }
-
-  return translationObject;
-}
 
 const sendEmail = () => {
   emailjs
