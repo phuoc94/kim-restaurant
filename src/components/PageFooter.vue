@@ -22,12 +22,9 @@
             </router-link>
           </div>
         </div>
-        <div class="mt-14 lg:mt-0 lg:basis-5/12">
+        <div v-if="links.length > 0" class="mt-14 lg:mt-0 lg:basis-5/12">
           <h4 class="font-montserrat font-bold uppercase text-zinc-100">
-            <a
-              href="https://www.facebook.com/VietnamilainenRavintolaKim"
-              target="_blank"
-            >
+            <a :href="links[0].path" target="_blank">
               {{ translation.footerFollowUs }}
               <i class="icon pi pi-facebook ml-2"></i>
             </a>
@@ -58,6 +55,7 @@ const API_URL = process.env.VUE_APP_API_URL;
 const menuItems = ref([]);
 const openHours = ref([]);
 const translation = ref();
+const links = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
@@ -85,6 +83,15 @@ const fetchLocales = async () => {
             day
             openHour
           }
+          links(
+            orderBy: customId_ASC
+            where: {OR: [{customId: "Facebook"}]}
+            locales: $locales
+          ) {
+            customId
+            label
+            path
+          }
         }
       `,
       variables: {
@@ -97,6 +104,7 @@ const fetchLocales = async () => {
     } else {
       menuItems.value = response.data.data.translations[0].navigationItems;
       openHours.value = response.data.data.openTimes;
+      links.value = response.data.data.links;
       translation.value = convertToTranslationObject(
         response.data.data.translationItems
       );

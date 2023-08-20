@@ -5,17 +5,14 @@
       v-if="buttons.length > 0"
       class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >
-      <a
-        href="https://www.facebook.com/VietnamilainenRavintolaKim"
-        target="_blank"
-      >
+      <a :href="buttons[2].path" target="_blank">
         <i class="icon pi pi-facebook text-4xl text-black"></i>
       </a>
       <router-link v-if="route.path === '/'" :to="buttons[0].path">
         <button class="button">{{ buttons[0].label }}</button>
       </router-link>
-      <router-link v-else :to="buttons[1].path">
-        <button class="button">{{ buttons[1].label }}</button>
+      <router-link v-else :to="buttons[2].path">
+        <button class="button">{{ buttons[2].label }}</button>
       </router-link>
     </div>
 
@@ -77,8 +74,8 @@
         <router-link v-if="route.path === '/'" :to="buttons[0].path">
           <button class="button">{{ buttons[0].label }}</button>
         </router-link>
-        <router-link v-else :to="buttons[1].path">
-          <button class="button">{{ buttons[1].label }}</button>
+        <router-link v-else :to="buttons[2].path">
+          <button class="button">{{ buttons[2].label }}</button>
         </router-link>
       </div>
     </div>
@@ -126,7 +123,7 @@ const fetchLocales = async () => {
           }
           links(
             orderBy: customId_ASC
-            where: {OR: [{customId: "Navigation-Button"}, {customId: "Book-a-table-button"}]}
+            where: {OR: [{customId: "Navigation-Button"}, {customId: "Book-a-table-button"} ,  {customId: "Facebook"}]}
             locales: $locales
           ) {
             customId
