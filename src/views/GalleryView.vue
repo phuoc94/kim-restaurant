@@ -54,7 +54,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, onMounted, reactive, toRefs, onUnmounted } from "vue";
+import { ref, onMounted, reactive, onUnmounted } from "vue";
 import { getBrowserLanguage } from "@/utils/languageUtils";
 import FrameFour from "@/components/FrameFour.vue";
 import Lightbox from "@/components/Lightbox.vue";
