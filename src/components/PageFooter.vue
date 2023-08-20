@@ -5,7 +5,9 @@
         <div class="min-w-max font-montserrat text-zinc-100 lg:basis-4/12">
           <h4 class="font-bold">{{ translation.footerOpenHours }}</h4>
           <div class="mt-3">
-            <p v-for="hour in openHours" :key="hour.label">{{ hour.label }}</p>
+            <p v-for="hour in openHours" :key="hour.day">
+              {{ hour.day + ` ` + hour.openHour }}
+            </p>
           </div>
         </div>
         <div class="mt-14 font-montserrat text-zinc-100 lg:mt-0 lg:basis-3/12">
@@ -69,7 +71,7 @@ const fetchLocales = async () => {
           translations(
             locales: $locales,
             orderBy: component_ASC
-            where: {OR: [{component: "footerLinks"}, {component: "openHours"}]}) {
+            where: {component: "footerLinks"}) {
             navigationItems {
               path
               label
@@ -78,6 +80,10 @@ const fetchLocales = async () => {
           translationItems(locales: $locales, where: {customId_contains: "footer"}) {
             customId
             text
+          }
+          openTimes(locales: $locales, orderBy: weekDaysNumber_ASC ) {
+            day
+            openHour
           }
         }
       `,
@@ -90,7 +96,7 @@ const fetchLocales = async () => {
       console.error("GraphQL errors:", response.data.errors);
     } else {
       menuItems.value = response.data.data.translations[0].navigationItems;
-      openHours.value = response.data.data.translations[1].navigationItems;
+      openHours.value = response.data.data.openTimes;
       translation.value = convertToTranslationObject(
         response.data.data.translationItems
       );
