@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-custom-gradient">
+  <div class="bg">
     <div v-if="error" class="p-64 text-center">
       An error occurred: {{ error }}
     </div>
@@ -8,7 +8,7 @@
 
     <div v-else v-for="(dishes, category) in groupedDishes" :key="category">
       <div class="container px-4 pb-24 pt-6 font-serif">
-        <h1 class="h1 mb-12 text-center font-bold lg:text-left">
+        <h1 class="h1 mb-12 text-center font-bold">
           {{ category }}
         </h1>
 
@@ -155,4 +155,9 @@ const fetchDishes = async () => {
 onMounted(fetchDishes);
 </script>
 
-<style scoped></style>
+<style scoped>
+.bg {
+  background-image: url("@/assets/bg.webp");
+  background-size: 100% auto;
+}
+</style>
