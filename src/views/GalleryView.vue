@@ -1,9 +1,13 @@
 <template>
   <div class="bg-orange-50 pb-24">
-    <div class="container">
+    <div v-if="content" class="container">
       <h1 class="h1 pb-14 pt-16 text-center font-serif font-bold text-black">
-        Sneak Peak of Our Delicious Offerings
+        {{ content.title }}
       </h1>
+      <p v-if="content.paragraph" class="font-montserrat text-neutral-900">
+        {{ content.paragraph[0] }}
+      </p>
+
       <div class="flex justify-center px-4">
         <div class="grid grid-cols-[auto_auto_auto] gap-2">
           <div
@@ -48,8 +52,10 @@
   />
 </template>
 
-<script>
-import { reactive, toRefs, onUnmounted } from "vue";
+<script setup>
+import axios from "axios";
+import { ref, onMounted, reactive, toRefs, onUnmounted } from "vue";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 import FrameFour from "@/components/FrameFour.vue";
 import Lightbox from "@/components/Lightbox.vue";
 import grid1 from "@/assets/grid1.webp";
@@ -58,33 +64,56 @@ import grid3 from "@/assets/grid3.png";
 import grid4 from "@/assets/grid4.png";
 import grid5 from "@/assets/grid5.png";
 
-export default {
-  components: { FrameFour, Lightbox },
-  setup() {
-    const state = reactive({
-      showLightbox: false,
-      selectedImage: null,
+const API_URL = process.env.VUE_APP_API_URL;
+
+const content = ref(null);
+const loading = ref(true);
+const error = ref(null);
+
+const fetchContent = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+      query($locales: [Locale!]!){
+        contents(where: {contentId: "Gallery-Section"}, locales: $locales) {
+          title
+          paragraph
+        }
+      } 
+    `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
     });
 
-    function toggleLightbox(imageSrc = null) {
-      state.selectedImage = imageSrc;
-      state.showLightbox = !!imageSrc;
-      document.body.style.overflow = state.showLightbox ? "hidden" : "";
+    if (response.data.errors) {
+      console.log("GraphQL errors:", response.data.errors);
+    } else {
+      content.value = response.data.data.contents[0];
     }
-
-    onUnmounted(() => {
-      document.body.style.overflow = "";
-    });
-
-    return {
-      ...toRefs(state),
-      toggleLightbox,
-      grid1,
-      grid2,
-      grid3,
-      grid4,
-      grid5,
-    };
-  },
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
+onMounted(fetchContent);
+
+const state = reactive({
+  showLightbox: false,
+  selectedImage: null,
+});
+
+function toggleLightbox(imageSrc = null) {
+  state.selectedImage = imageSrc;
+  state.showLightbox = !!imageSrc;
+  document.body.style.overflow = state.showLightbox ? "hidden" : "";
+}
+
+onUnmounted(() => {
+  document.body.style.overflow = "";
+});
 </script>
