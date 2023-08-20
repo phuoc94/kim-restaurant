@@ -11,7 +11,7 @@
         </div>
         <div
           class="flex justify-between py-12 text-lg"
-          v-if="openHours.length > 1"
+          v-if="openHours.length > 0"
         >
           <div v-for="hour in openHours" :key="hour.day">
             <p class="font-bold">{{ hour.day }}</p>
