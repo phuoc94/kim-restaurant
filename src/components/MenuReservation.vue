@@ -1,20 +1,21 @@
 <template>
-  <div class="bg-custom-gradient">
+  <div v-if="content" class="bg-custom-gradient">
     <div class="container px-4 pt-16 text-center" id="reservation">
       <h1 class="h1 font-serif font-bold text-neutral-900/80">
-        Make a Reservation
+        {{ content.title }}
       </h1>
       <p class="font-montserrat text-neutral-900">
-        Get in touch with the restaurant
+        {{ content.paragraph[0] }}
       </p>
       <div
         v-if="formSubmitted"
         class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
       >
         <h2 class="col-span-full text-center">
-          Thank you for making a reservation!
+          {{ translation.formThanks }}
         </h2>
       </div>
+
       <div
         v-else-if="formError"
         class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
@@ -30,161 +31,211 @@
         @submit.prevent="sendEmail"
         class="grid grid-cols-1 gap-y-5 pb-16 pt-8 lg:grid-cols-6 lg:gap-x-16"
       >
-        <div
-          class="relative col-span-2"
-          id="datepicker"
-          data-te-datepicker-init
-          data-te-format="dd/mm/yyyy"
-        >
-          <input
-            type="text"
-            class="w-full rounded border border-neutral-900 bg-transparent px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-            name="user_date"
-            style="height: 5rem"
-            v-model="currentDate"
-            data-te-datepicker-toggle-ref
-            data-te-datepicker-toggle-button-ref
-          />
-        </div>
-        <div
-          class="relative col-span-2"
-          data-te-with-icon="false"
-          data-te-timepicker-init
-          id="timepicker-just-input"
-        >
-          <input
-            type="text"
-            class="w-full rounded border border-neutral-900 bg-transparent px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-            data-te-toggle="timepicker-just-input"
-            style="height: 5rem"
-            name="user_time"
-            id="form15"
-            value="10:00"
-          />
-        </div>
-        <div
-          class="col-span-2 rounded border border-neutral-900 bg-transparent px-8"
-        >
-          <select
-            name="num_people"
-            class="w-full bg-transparent"
-            style="height: 78px"
+        <template v-if="translation">
+          <div
+            class="relative col-span-2"
+            id="datepicker"
+            data-te-datepicker-init
+            data-te-format="dd/mm/yyyy"
           >
-            <option value="1">1 person</option>
-            <option value="2" selected>2 people</option>
-            <option value="3">3 people</option>
-            <option value="4">4 people</option>
-            <option value="5">5 people</option>
-            <option value="6">6 people</option>
-            <option value="7">7 people</option>
-            <option value="8">8 people</option>
-            <option value="9">9 people</option>
-            <option value="10">10 people</option>
-          </select>
-        </div>
+            <input
+              type="text"
+              class="w-full rounded border border-neutral-900 bg-transparent px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              name="user_date"
+              style="height: 5rem"
+              v-model="currentDate"
+              data-te-datepicker-toggle-ref
+              data-te-datepicker-toggle-button-ref
+            />
+          </div>
+          <div
+            class="relative col-span-2"
+            data-te-with-icon="false"
+            data-te-timepicker-init
+            id="timepicker-just-input"
+          >
+            <input
+              type="text"
+              class="w-full rounded border border-neutral-900 bg-transparent px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              data-te-toggle="timepicker-just-input"
+              style="height: 5rem"
+              name="user_time"
+              id="form15"
+              value="10:00"
+            />
+          </div>
+          <div
+            class="col-span-2 rounded border border-neutral-900 bg-transparent px-8"
+          >
+            <select
+              name="num_people"
+              class="w-full bg-transparent"
+              style="height: 78px"
+            >
+              <option value="1">1 {{ translation.formPerson }}</option>
+              <option value="2" selected>2 {{ translation.formPerson }}</option>
+              <option value="3">3 {{ translation.formPerson }}</option>
+              <option value="4">4 {{ translation.formPerson }}</option>
+              <option value="5">5 {{ translation.formPerson }}</option>
+              <option value="6">6 {{ translation.formPerson }}</option>
+              <option value="7">7 {{ translation.formPerson }}</option>
+              <option value="8">8 {{ translation.formPerson }}</option>
+              <option value="9">9 {{ translation.formPerson }}</option>
+              <option value="10">10 {{ translation.formPerson }}</option>
+            </select>
+          </div>
 
-        <div class="col-span-3 flex flex-col text-left">
-          <label
-            class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
-            >Email:</label
-          >
-          <input
-            type="email"
-            name="user_email"
-            placeholder="Email"
-            class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
-            style="height: 5rem"
-            required
-          />
-        </div>
-        <div class="col-span-3 flex flex-col text-left">
-          <label
-            class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
-            >Phone number:</label
-          >
-          <input
-            type="tel"
-            name="user_phone"
-            placeholder="Phone number"
-            class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
-            style="height: 5rem"
-          />
-        </div>
-        <div class="col-span-full text-left">
-          <label
-            class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
-            >Message:</label
-          >
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="4"
-            class="w-full rounded border border-neutral-900 bg-transparent px-9 py-8 focus:outline-none focus:ring-2 focus:ring-blue-600"
-          ></textarea>
-        </div>
-        <div class="col-span-full">
-          <input type="submit" class="button" value="Book a table" />
-        </div>
+          <div class="col-span-3 flex flex-col text-left">
+            <label
+              class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
+              >{{ translation.formEmail }}:</label
+            >
+            <input
+              type="email"
+              name="user_email"
+              :placeholder="translation.formEmail"
+              class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              style="height: 5rem"
+              required
+            />
+          </div>
+          <div class="col-span-3 flex flex-col text-left">
+            <label
+              class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
+              >{{ translation.formPhoneNumber }}:</label
+            >
+            <input
+              type="tel"
+              name="user_phone"
+              :placeholder="translation.formPhoneNumber"
+              class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              style="height: 5rem"
+            />
+          </div>
+          <div class="col-span-full text-left">
+            <label
+              class="hidden pb-2 font-serif text-xl font-bold text-neutral-900 lg:block"
+              >{{ translation.formMessage }}:</label
+            >
+            <textarea
+              name="message"
+              :placeholder="translation.formMessage"
+              rows="4"
+              class="w-full rounded border border-neutral-900 bg-transparent px-9 py-8 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            ></textarea>
+          </div>
+          <div class="col-span-full">
+            <input
+              type="submit"
+              class="button"
+              :value="translation.formSubmitButton"
+            />
+          </div>
+        </template>
       </form>
     </div>
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
+<script setup>
+import { ref, onMounted } from "vue";
+import axios from "axios";
 import emailjs from "@emailjs/browser";
-
-import { onMounted } from "vue";
 import { Input, Timepicker, Datepicker, initTE } from "tw-elements";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
-export default {
-  setup() {
-    const form = ref(null);
-    const formError = ref(null);
-    const formSubmitted = ref(false);
+const API_URL = process.env.VUE_APP_API_URL;
 
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0");
-    let yyyy = today.getFullYear();
+const translation = ref(null);
+const content = ref(null);
+const loading = ref(true);
+const error = ref(null);
 
-    today = dd + "/" + mm + "/" + yyyy;
+const form = ref(null);
+const formError = ref(null);
+const formSubmitted = ref(false);
 
-    const currentDate = ref(today);
+let today = new Date();
+let dd = String(today.getDate()).padStart(2, "0");
+let mm = String(today.getMonth() + 1).padStart(2, "0");
+let yyyy = today.getFullYear();
 
-    const sendEmail = () => {
-      emailjs
-        .sendForm(
-          process.env.VUE_APP_EMAILJS_SERVICE_ID,
-          process.env.VUE_APP_EMAILJS_TEMPLATE_ID,
-          form.value,
-          process.env.VUE_APP_EMAILJS_PUBLIC_KEY
-        )
-        .then(
-          (result) => {
-            console.log("SUCCESS!", result.text);
-            formSubmitted.value = true;
-          },
-          (error) => {
-            console.log("FAILED...", error.text);
-            formError.value = error.text;
-          }
-        );
-    };
+today = dd + "/" + mm + "/" + yyyy;
 
-    onMounted(() => {
-      initTE({ Timepicker, Datepicker, Input });
+const currentDate = ref(today);
+
+function convertToTranslationObject(translationItems) {
+  const translationObject = {};
+
+  for (const item of translationItems) {
+    translationObject[item.customId] = item.text;
+  }
+
+  return translationObject;
+}
+
+const sendEmail = () => {
+  emailjs
+    .sendForm(
+      process.env.VUE_APP_EMAILJS_SERVICE_ID,
+      process.env.VUE_APP_EMAILJS_TEMPLATE_ID,
+      form.value,
+      process.env.VUE_APP_EMAILJS_PUBLIC_KEY
+    )
+    .then(
+      (result) => {
+        console.log("SUCCESS!", result.text);
+        formSubmitted.value = true;
+      },
+      (error) => {
+        console.log("FAILED...", error.text);
+        formError.value = error.text;
+      }
+    );
+};
+
+const fetchContent = async () => {
+  try {
+    loading.value = true;
+    error.value = null;
+    const response = await axios.post(API_URL, {
+      query: `
+      query($locales: [Locale!]!){
+        contents(where: {contentId: "Reservation-Section"}, locales: $locales) {
+          title
+          paragraph
+        }
+        translationItems(where: {customId_contains: "form"}, locales: $locales) {
+          customId
+          text
+        }
+      }
+    `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
     });
 
-    return {
-      form,
-      sendEmail,
-      currentDate,
-      formSubmitted,
-      formError,
-    };
-  },
+    if (response.data.errors) {
+      console.log("GraphQL errors:", response.data.errors);
+    } else {
+      translation.value = convertToTranslationObject(
+        response.data.data.translationItems
+      );
+      content.value = response.data.data.contents[0];
+      console.log(translation.value);
+    }
+  } catch (e) {
+    error.value = e.message;
+  } finally {
+    loading.value = false;
+  }
 };
+
+onMounted(() => {
+  fetchContent();
+  initTE({ Timepicker, Datepicker, Input });
+});
 </script>
 
 <style scoped></style>
