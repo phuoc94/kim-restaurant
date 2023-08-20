@@ -57,7 +57,7 @@
         />
       </div>
       <div class="col-span-2 rounded border border-neutral-900 bg-white px-8">
-        <select name="num_people" class="w-full" style="height: 78px">
+        <select name="num_people" class="w-full bg-white" style="height: 78px">
           <option value="1">1 {{ translation.formPerson }}</option>
           <option value="2" selected>2 {{ translation.formPerson }}</option>
           <option value="3">3 {{ translation.formPerson }}</option>
