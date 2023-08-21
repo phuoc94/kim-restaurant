@@ -82,6 +82,7 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import axios from "axios";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 const API_URL = process.env.VUE_APP_API_URL;
 
 const dishes = ref([]);
@@ -109,8 +110,8 @@ const fetchDishes = async () => {
     error.value = null;
     const response = await axios.post(API_URL, {
       query: `
-        {
-          menus(where: {hiddenInMenu: false}, orderBy: dishNumber_ASC, first: 100) {
+        query($locales: [Locale!]!){
+          menus(locales: $locales, where: {hiddenInMenu: false}, orderBy: dishNumber_ASC, first: 100) {
             dishNumber
             title
             description
@@ -130,13 +131,16 @@ const fetchDishes = async () => {
             vegan
             hiddenInMenu
           }
-          categorynames{
+          categorynames(locales: $locales){
             categoryKey
             title
             sequence
           }
         }
       `,
+      variables: {
+        locales: [getBrowserLanguage()],
+      },
     });
 
     if (response.data.errors) {
