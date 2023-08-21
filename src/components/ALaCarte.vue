@@ -66,7 +66,7 @@
               class="grid-price col-span-2 col-start-2 row-start-2 font-bold md:text-xl lg:col-span-1 lg:col-start-4 lg:row-span-2 lg:row-start-1"
             >
               <div v-for="(price, priceIndex) in dish.prices" :key="priceIndex">
-                <p v-if="dish.prices.length > 0">
+                <p v-if="price.type">
                   {{ price.type }}: {{ price.price.toFixed(2) }}
                 </p>
                 <p v-else>{{ price.price.toFixed(2) }}</p>
