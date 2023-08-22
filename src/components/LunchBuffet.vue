@@ -4,7 +4,7 @@
       <div class="pb-16">
         <img class="mx-auto" src="@/assets/lounasbuffet.png" />
         <h1
-          class="h1 -translate-y-12 text-center font-serif font-bold text-black md:-translate-y-20 lg:-translate-y-32"
+          class="h1 -translate-y-12 text-center font-serif font-bold text-black md:-translate-y-24 lg:-translate-y-36"
         >
           {{ parseFloat(lunchbuffetPrice).toFixed(2) }} €
         </h1>
