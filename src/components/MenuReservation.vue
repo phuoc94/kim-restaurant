@@ -42,7 +42,7 @@
               type="text"
               class="w-full rounded border border-neutral-900 bg-transparent px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               name="user_date"
-              style="height: 5rem"
+              style="height: 80px"
               v-model="currentDate"
               data-te-datepicker-toggle-ref
               data-te-datepicker-toggle-button-ref
@@ -58,7 +58,7 @@
               type="text"
               class="w-full rounded border border-neutral-900 bg-transparent px-9 text-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
               data-te-toggle="timepicker-just-input"
-              style="height: 5rem"
+              style="height: 80px"
               name="user_time"
               id="form15"
               value="10:00"
@@ -95,7 +95,7 @@
               name="user_email"
               :placeholder="translation.formEmail"
               class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              style="height: 5rem"
+              style="height: 80px"
               required
             />
           </div>
@@ -109,7 +109,7 @@
               name="user_phone"
               :placeholder="translation.formPhoneNumber"
               class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              style="height: 5rem"
+              style="height: 80px"
             />
           </div>
           <div class="col-span-full text-left">
