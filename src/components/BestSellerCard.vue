@@ -8,7 +8,7 @@
         <div
           class="flex h-full flex-col items-center justify-center text-center"
         >
-          <div class="text-xs">alk.</div>
+          <div class="text-xs font-bold">alk.</div>
           <div class="text-sm">{{ price }}</div>
         </div>
       </div>
