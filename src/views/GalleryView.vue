@@ -46,8 +46,8 @@
   </div>
   <FrameFour />
   <Lightbox
-    v-if="showLightbox"
-    :selectedImage="selectedImage"
+    v-if="state.showLightbox"
+    :selectedImage="state.selectedImage"
     @close="toggleLightbox"
   />
 </template>
