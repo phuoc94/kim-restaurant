@@ -1,6 +1,6 @@
 <template>
   <div class="bg-image flex h-screen items-center justify-center px-4">
-    <div v-if="translation" class="bg-zinc-700 px-16 py-12 md:px-20 lg:px-24">
+    <div v-if="translation" class="bg-zinc-700 px-4 py-12 md:px-20 lg:px-24">
       <div
         class="basis-full divide-y-4 divide-dashed text-center font-inter text-white md:basis-10/12 lg:basis-8/12 xl:basis-1/2"
       >
