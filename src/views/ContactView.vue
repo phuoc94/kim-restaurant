@@ -31,7 +31,7 @@
                 }}</span></a
               >
             </p>
-            <p>
+            <p class="max-w-xs lg:max-w-none">
               {{ translation.contactFacebookText }}
               <a
                 :href="links[0].path"
