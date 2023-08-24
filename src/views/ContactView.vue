@@ -9,8 +9,9 @@
             {{ translation.contactTitle }}
           </h1>
         </div>
+
         <div
-          class="flex justify-between py-12 text-lg"
+          class="mx-auto grid grid-cols-2 justify-between gap-4 py-12 text-lg md:grid-cols-4"
           v-if="openHours.length > 0"
         >
           <div v-for="hour in openHours" :key="hour.day">
@@ -18,6 +19,7 @@
             <p>{{ hour.openHour }}</p>
           </div>
         </div>
+
         <div class="flex flex-col pt-6 text-left text-lg md:flex-row">
           <div class="mb-4 w-full md:mb-0 md:mr-2 md:w-7/12">
             <p>{{ translation.ContactInfo }}</p>
