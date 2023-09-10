@@ -10,18 +10,20 @@
         :key="index"
       >
         <div
-          class="col-span-1 cursor-pointer rounded border border-yellow-500 px-4 py-1 text-center font-serif text-xl"
+          class="col-span-1 flex cursor-pointer justify-center rounded border border-[#FFC933] px-4 py-1 text-center font-serif text-xl"
           :class="{
-            'bg-yellow-500 font-bold': currentTab === tab.path,
+            'bg-[#FFC933] font-bold': currentTab === tab.path,
           }"
         >
           <span>
-            <i
-              class="icon pi pi-star-fill text-yellow-200"
+            <img
+              src="../assets/image-5.png"
+              alt="icon"
+              class="w-[20px]"
               v-if="currentTab === tab.path"
-            ></i>
+            />
           </span>
-          {{ tab.label }}
+          <span>{{ tab.label }}</span>
         </div>
       </router-link>
     </div>
