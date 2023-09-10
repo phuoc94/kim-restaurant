@@ -10,7 +10,11 @@
     />
     <div class="relative z-10 mx-14 text-center text-white">
       <h1 class="h1 mb-6 font-serif font-bold">{{ content.title }}</h1>
-      <p class="mb-8 max-w-3xl font-inter">{{ content.paragraph[0] }}</p>
+      <div class="mb-8 max-w-3xl font-inter">
+        <p v-for="(item, index) in content.paragraph" :key="index">
+          {{ item }}
+        </p>
+      </div>
       <router-link :to="{ path: content.buttons[0].path }">
         <button class="button">{{ content.buttons[0].label }}</button>
       </router-link>
@@ -55,6 +59,7 @@ const fetchContent = async () => {
       console.log("GraphQL errors:", response.data.errors);
     } else {
       content.value = response.data.data.contents[0];
+      console.log(response.data.data.contents[0]);
     }
   } catch (e) {
     error.value = e.message;

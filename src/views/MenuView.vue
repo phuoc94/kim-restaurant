@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white lg:bg-custom-gradient">
+  <div class="bg-custom-gradient">
     <div
       class="container grid max-w-md grid-cols-2 justify-center gap-5 px-4 py-5 lg:max-w-4xl lg:grid-cols-4"
     >
