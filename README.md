@@ -13,7 +13,7 @@ Welcome to the Kim Restaurant landing page project! This repository contains the
 - Vue.js
 - Tailwind CSS
 - Axios for fetching data from GraphCMS
-- EmailJS for handling form submissions
+- [EmailJS](https://www.emailjs.com/) for handling form submissions
 
 ## Installation
 
