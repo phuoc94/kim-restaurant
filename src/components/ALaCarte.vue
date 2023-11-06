@@ -21,18 +21,20 @@
                 <img src="@/assets/featured-icon.webp" />
               </span>
             </div>
-            <div class="grid-title">
-              <h3 class="text-xl md:text-2xl lg:font-bold">
-                <span v-if="dish.dishNumber">{{ dish.dishNumber }}.</span>
-                {{ dish.title }}
-              </h3>
-            </div>
-            <div
-              class="grid-description col-span-2 lg:col-start-2 lg:row-start-2"
-            >
-              <p class="text-sm font-normal md:text-base">
-                {{ dish.description }}
-              </p>
+            <div>
+              <div class="grid-title">
+                <h3 class="text-xl md:text-2xl lg:font-bold">
+                  <span v-if="dish.dishNumber">{{ dish.dishNumber }}.</span>
+                  {{ dish.title }}
+                </h3>
+              </div>
+              <div
+                class="grid-description col-span-2 lg:col-start-2 lg:row-start-2"
+              >
+                <p class="text-sm font-normal md:text-base">
+                  {{ dish.description }}
+                </p>
+              </div>
             </div>
             <div
               class="grid-dietary col-start-3 row-start-1 lg:col-start-3 lg:row-start-1"
@@ -80,9 +82,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { computed, onMounted, ref } from "vue";
+
 import axios from "axios";
+
 import { getBrowserLanguage } from "@/utils/languageUtils";
+
 const API_URL = process.env.VUE_APP_API_URL;
 
 const dishes = ref([]);
