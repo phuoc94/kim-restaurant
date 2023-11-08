@@ -5,7 +5,7 @@
       v-if="buttons.length > 0"
       class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >
-      <a :href="buttons[2].path" target="_blank">
+      <a :href="buttons[1].path" target="_blank">
         <i class="icon pi pi-facebook text-4xl text-black"></i>
       </a>
       <router-link v-if="route.path === '/'" :to="buttons[0].path">
@@ -83,11 +83,14 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
-import { useRoute } from "vue-router";
 import "primeicons/primeicons.css";
-import { getBrowserLanguage } from "@/utils/languageUtils";
+
+import { onMounted, ref, watch } from "vue";
+
 import axios from "axios";
+import { useRoute } from "vue-router";
+
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
