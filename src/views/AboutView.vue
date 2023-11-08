@@ -1,22 +1,23 @@
 <template>
   <div v-if="content">
     <img class="max-h-screen w-full" src="@/assets/about_img.webp" />
-    <div class="bg-custom-gradient py-24 md:py-32 lg:py-40">
-      <h1 class="h1 text-center font-serif font-bold text-amber-400">
-        {{ content.title }}
-      </h1>
+    <div>
+      <div class="container grid justify-center">
+        <h1 class="h1 mt-16 text-center font-serif font-bold text-amber-400">
+          {{ content.title }}
+        </h1>
+        <p class="max-w-md pb-8 pt-2 text-center">
+          {{ content.paragraph[0] }}
+        </p>
+      </div>
       <div
-        class="mx-auto mt-8 flex max-w-5xl flex-col gap-16 px-4 text-justify md:flex-row"
+        class="container rounded-br-[36px] rounded-tl-[36px] bg-custom-gradient px-32 py-12 shadow-xl"
       >
-        <div class="flex-1">
-          <p>
-            {{ content.paragraph[0] }}
-          </p>
-        </div>
-        <div class="flex-1">
-          <p>
-            {{ content.paragraph[1] }}
-          </p>
+        <div v-for="(page, index) in content.pagas" :key="index" class="my-4">
+          <h6 class="font-bold">
+            {{ page.title }}
+          </h6>
+          <div v-html="page.paragraph?.html"></div>
         </div>
       </div>
     </div>
@@ -25,10 +26,12 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
-import { ref, onMounted } from "vue";
-import { getBrowserLanguage } from "@/utils/languageUtils";
+
 import FrameFour from "@/components/FrameFour.vue";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -46,6 +49,12 @@ const fetchContent = async () => {
         contents(where: {contentId: "About-Section"}, locales: $locales) {
           title
           paragraph
+          pagas{
+            title
+            paragraph{
+              html
+            }
+         }
         }
       } 
     `,
