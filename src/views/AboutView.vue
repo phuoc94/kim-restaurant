@@ -1,6 +1,10 @@
 <template>
   <div v-if="content">
-    <img class="max-h-screen w-full" src="@/assets/about_img.webp" />
+    <img
+      class="max-h-screen w-full object-cover"
+      src="https://media.graphassets.com/kbo8uJgTmqcbdmf1LzGN"
+    />
+
     <div>
       <div class="container grid justify-center">
         <h1 class="h1 mt-16 text-center font-serif font-bold text-amber-400">
@@ -49,12 +53,16 @@ const fetchContent = async () => {
         contents(where: {contentId: "About-Section"}, locales: $locales) {
           title
           paragraph
+          image {
+            url
+          }
           pagas{
             title
             paragraph{
               html
             }
-         }
+          }
+
         }
       } 
     `,
