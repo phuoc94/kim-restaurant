@@ -8,7 +8,7 @@
 
     <div v-else v-for="(dishes, category) in groupedDishes" :key="category">
       <div class="container px-4 pb-24 pt-6 font-serif">
-        <h1 class="h1 mb-12 text-center font-bold">
+        <h1 class="h1 text-dim-gray mb-12 text-center font-bold">
           {{ category }}
         </h1>
 

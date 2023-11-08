@@ -1,7 +1,7 @@
 <template>
   <div class="bg-orange-50 pb-24">
     <div v-if="content" class="container">
-      <h1 class="h1 pb-14 pt-16 text-center font-serif font-bold text-black">
+      <h1 class="h1 text-dim-gray pb-14 pt-16 text-center font-serif font-bold">
         {{ content.title }}
       </h1>
       <p v-if="content.paragraph" class="font-montserrat text-neutral-900">
@@ -53,16 +53,18 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, reactive, ref } from "vue";
+
 import axios from "axios";
-import { ref, onMounted, reactive, onUnmounted } from "vue";
-import { getBrowserLanguage } from "@/utils/languageUtils";
-import FrameFour from "@/components/FrameFour.vue";
-import Lightbox from "@/components/Lightbox.vue";
+
 import grid1 from "@/assets/grid1.webp";
 import grid2 from "@/assets/grid2.png";
 import grid3 from "@/assets/grid3.png";
 import grid4 from "@/assets/grid4.png";
 import grid5 from "@/assets/grid5.png";
+import FrameFour from "@/components/FrameFour.vue";
+import Lightbox from "@/components/Lightbox.vue";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
 

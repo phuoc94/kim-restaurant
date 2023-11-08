@@ -8,7 +8,7 @@
     </div>
     <div class="basis-1/2 p-11">
       <h1
-        class="h1 mb-8 text-center font-libre font-bold text-gray-900 lg:text-left"
+        class="h1 text-dim-gray mb-8 text-center font-libre font-bold lg:text-left"
       >
         {{ content.title }}
       </h1>
@@ -38,8 +38,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
+
 import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;

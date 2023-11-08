@@ -1,6 +1,6 @@
 <template>
   <div v-if="content" class="container px-4 pt-16 text-center" id="reservation">
-    <h1 class="h1 font-serif font-bold text-neutral-900/80">
+    <h1 class="h1 text-dim-gray font-serif font-bold">
       {{ content.title }}
     </h1>
     <p class="font-montserrat text-neutral-900">
@@ -10,10 +10,12 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
-import { getBrowserLanguage } from "@/utils/languageUtils";
+
 import ContactForm from "@/components/ContactForm.vue";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
