@@ -1,9 +1,6 @@
 <template>
   <div v-if="content">
-    <img
-      class="max-h-screen w-full object-cover"
-      src="https://media.graphassets.com/kbo8uJgTmqcbdmf1LzGN"
-    />
+    <img class="max-h-screen w-full object-cover" :src="content.image.url" />
 
     <div>
       <div class="container grid justify-center">
