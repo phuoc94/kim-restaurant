@@ -35,7 +35,7 @@
         class="mt-14 flex items-end gap-1 lg:mt-0 lg:basis-1/2 lg:justify-end"
       >
         <h1
-          class="font-serif text-4xl font-bold leading-none text-yellow-500 md:text-5xl"
+          class="w-min font-serif text-4xl font-bold leading-none text-yellow-500 sm:w-fit md:text-5xl"
         >
           {{ translation.footerSeeYou }}
         </h1>
