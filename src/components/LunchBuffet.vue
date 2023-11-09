@@ -17,7 +17,7 @@
           class="menu-container container mb-24 grid grid-cols-1 gap-8 bg-white px-4 py-8 shadow-lg md:px-12 lg:grid-cols-2 lg:px-20"
         >
           <div class="flex items-center justify-center lg:justify-start">
-            <h3 class="h1 font-serif font-bold text-amber-400">
+            <h3 class="h1 font-lucida-hw font-serif font-bold text-amber-400">
               {{ translation.dailySpecials }}
             </h3>
           </div>
@@ -36,7 +36,9 @@
         </div>
 
         <div class="container bg-white px-4 py-8 shadow-lg md:px-12 lg:px-20">
-          <h3 class="h1 mb-8 text-center font-serif font-bold text-amber-400">
+          <h3
+            class="h1 font-lucida-hw mb-8 text-center font-serif font-bold text-amber-400"
+          >
             {{ translation.dailyClassic }}
           </h3>
           <div class="grid grid-cols-1 gap-x-16 gap-y-8 lg:grid-cols-2">

@@ -4,7 +4,9 @@
 
     <div>
       <div class="container grid justify-center">
-        <h1 class="h1 mt-16 text-center font-serif font-bold text-amber-400">
+        <h1
+          class="h1 font-lucida-hw mt-16 text-center font-serif font-bold text-amber-400"
+        >
           {{ content.title }}
         </h1>
         <p class="max-w-md pb-8 pt-2 text-center">
