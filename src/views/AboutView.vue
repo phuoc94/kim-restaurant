@@ -3,7 +3,7 @@
     <img class="max-h-screen w-full object-cover" :src="content.image.url" />
 
     <div>
-      <div class="container grid justify-center">
+      <div class="container grid justify-center px-4">
         <h1
           class="h1 font-lucida-hw mt-16 text-center font-serif font-bold text-amber-400"
         >
@@ -14,7 +14,7 @@
         </p>
       </div>
       <div
-        class="container rounded-br-[36px] rounded-tl-[36px] bg-custom-gradient px-32 py-12 shadow-xl"
+        class="container rounded-br-[36px] rounded-tl-[36px] bg-custom-gradient px-4 py-12 shadow-xl lg:px-32"
       >
         <div v-for="(page, index) in content.pagas" :key="index" class="my-4">
           <h6 class="font-bold">
