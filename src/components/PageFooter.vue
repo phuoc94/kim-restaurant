@@ -32,11 +32,13 @@
         </div>
       </div>
       <div
-        class="mt-14 flex items-baseline gap-1 lg:mt-0 lg:basis-1/2 lg:justify-end"
+        class="mt-14 flex items-end gap-1 lg:mt-0 lg:basis-1/2 lg:justify-end"
       >
-        <div class="see-you font-serif text-5xl font-bold text-yellow-500">
+        <h1
+          class="font-serif text-4xl font-bold leading-none text-yellow-500 md:text-5xl"
+        >
           {{ translation.footerSeeYou }}
-        </div>
+        </h1>
         <img src="@/assets/image-5.png" />
       </div>
     </div>
@@ -44,11 +46,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
 
-import { getBrowserLanguage } from "@/utils/languageUtils";
 import { convertToTranslationObject } from "@/utils/convertToTranslationObject";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -118,3 +121,4 @@ const fetchLocales = async () => {
 
 onMounted(fetchLocales);
 </script>
+<style></style>
