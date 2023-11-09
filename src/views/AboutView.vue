@@ -2,8 +2,8 @@
   <div v-if="content">
     <img class="max-h-screen w-full object-cover" :src="content.image.url" />
 
-    <div>
-      <div class="container grid justify-center px-4">
+    <div class="px-4">
+      <div class="container grid justify-center">
         <h1
           class="h1 font-lucida-hw mt-16 text-center font-serif font-bold text-amber-400"
         >
