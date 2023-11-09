@@ -51,7 +51,7 @@ const fetchContent = async () => {
           title
           paragraph
           image {
-            url
+            url(transformation: {image: {resize: {height: 960, width: 1440}}})
           }
           pagas{
             title
