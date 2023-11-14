@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <FrameOne />
     <FrameTwo />
+    <FrameOne />
     <FrameThree />
     <FrameFour />
   </div>
@@ -9,10 +9,11 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import FrameOne from "@/components/FrameOne.vue";
-import FrameTwo from "@/components/FrameTwo.vue";
-import FrameThree from "@/components/FrameThree.vue";
+
 import FrameFour from "@/components/FrameFour.vue";
+import FrameOne from "@/components/FrameOne.vue";
+import FrameThree from "@/components/FrameThree.vue";
+import FrameTwo from "@/components/FrameTwo.vue";
 
 export default defineComponent({
   name: "HomeView",
