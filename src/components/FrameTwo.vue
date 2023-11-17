@@ -3,7 +3,7 @@
     v-if="content"
     class="container grid grid-cols-1 items-center py-24 lg:grid-cols-2"
   >
-    <div class="lg:margin-0 mt-16 flex basis-1/2 justify-center">
+    <div class="lg:margin-0 flex basis-1/2 justify-center">
       <img class="image" src="@/assets/mihoanhthanh.webp" />
     </div>
     <div class="basis-1/2 p-11">
