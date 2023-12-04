@@ -40,6 +40,18 @@
               :src="grid4"
             />
           </div>
+          <div class="h-full" @click="toggleLightbox(grid6)">
+            <img
+              class="h-full w-full cursor-pointer object-cover"
+              :src="grid6"
+            />
+          </div>
+          <div class="col-span-2 h-full" @click="toggleLightbox(grid7)">
+            <img
+              class="h-full w-full cursor-pointer object-cover"
+              :src="grid7"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -57,11 +69,13 @@ import { onMounted, onUnmounted, reactive, ref } from "vue";
 
 import axios from "axios";
 
-import grid1 from "@/assets/grid1.webp";
-import grid2 from "@/assets/grid2.png";
+import grid2 from "@/assets/2.png";
+import grid7 from "@/assets/7.jpeg";
+import grid6 from "@/assets/DSC9205Edit.jpg";
 import grid3 from "@/assets/grid3.png";
 import grid4 from "@/assets/grid4.png";
-import grid5 from "@/assets/grid5.png";
+import grid5 from "@/assets/IMG_1624.jpg";
+import grid1 from "@/assets/IMG_1683-HDR.jpg";
 import FrameFour from "@/components/FrameFour.vue";
 import Lightbox from "@/components/Lightbox.vue";
 import { getBrowserLanguage } from "@/utils/languageUtils";
