@@ -67,7 +67,11 @@
           <option value="7">7 {{ translation.formPerson }}</option>
           <option value="8">8 {{ translation.formPerson }}</option>
           <option value="9">9 {{ translation.formPerson }}</option>
-          <option value="10">10 {{ translation.formPerson }}</option>
+          <option value="10+">10+ {{ translation.formPerson }}</option>
+          <option value="20+">20+ {{ translation.formPerson }}</option>
+          <option value="30+">30+ {{ translation.formPerson }}</option>
+          <option value="40+">40+ {{ translation.formPerson }}</option>
+          <option value="50+">50+ {{ translation.formPerson }}</option>
         </select>
       </div>
 
@@ -122,12 +126,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
-import emailjs from "@emailjs/browser";
-import { Input, Timepicker, Datepicker, initTE } from "tw-elements";
-import { getBrowserLanguage } from "@/utils/languageUtils";
+import { Datepicker, initTE, Input, Timepicker } from "tw-elements";
+
 import { convertToTranslationObject } from "@/utils/convertToTranslationObject";
+import { getBrowserLanguage } from "@/utils/languageUtils";
+import emailjs from "@emailjs/browser";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
