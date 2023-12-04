@@ -60,13 +60,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
 
 import FrameFour from "@/components/FrameFour.vue";
-
-import { getBrowserLanguage } from "@/utils/languageUtils";
 import { convertToTranslationObject } from "@/utils/convertToTranslationObject";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
@@ -127,7 +127,7 @@ onMounted(fetchLocales);
 
 <style scoped>
 .bg-image {
-  background-image: url("@/assets/VietnamilainenRavintolaKim_Discovery.webp");
+  background-image: url("@/assets/1.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

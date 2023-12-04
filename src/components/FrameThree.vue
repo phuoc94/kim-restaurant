@@ -5,7 +5,7 @@
       <div class="px-4 md:basis-2/3">
         <img
           class="aspect-video w-full rounded-bl-[10px] rounded-br-[50px] rounded-tl-[50px] rounded-tr-[10px] object-cover md:min-h-screen md:rounded-none"
-          src="@/assets/slice2.webp"
+          src="@/assets/1.png"
         />
       </div>
 
@@ -38,12 +38,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import Carousel from "@/components/Carousel.vue";
-import Slide from "@/components/Slide.vue";
-import ReviewContent from "@/components/ReviewContent.vue";
-import { getBrowserLanguage } from "@/utils/languageUtils";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
+
+import Carousel from "@/components/Carousel.vue";
+import ReviewContent from "@/components/ReviewContent.vue";
+import Slide from "@/components/Slide.vue";
+import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
 
