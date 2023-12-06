@@ -70,9 +70,9 @@ import { onMounted, onUnmounted, reactive, ref } from "vue";
 import axios from "axios";
 
 import grid2 from "@/assets/2.png";
-import grid7 from "@/assets/7.jpeg";
+import grid3 from "@/assets/3.png";
+import grid7 from "@/assets/4.png";
 import grid6 from "@/assets/DSC9205Edit.jpg";
-import grid3 from "@/assets/grid3.png";
 import grid4 from "@/assets/grid4.png";
 import grid5 from "@/assets/IMG_1624.jpg";
 import grid1 from "@/assets/IMG_1683-HDR.jpg";
