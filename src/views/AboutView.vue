@@ -14,7 +14,7 @@
         </p>
       </div>
       <div
-        class="container rounded-br-[36px] rounded-tl-[36px] bg-custom-gradient px-4 py-12 shadow-xl lg:px-32"
+        class="container rounded-br-[36px] rounded-tl-[36px] bg-[#DEC0A5] px-4 py-12 shadow-xl lg:px-32"
       >
         <div v-for="(page, index) in content.pagas" :key="index" class="my-4">
           <h6 class="font-bold">

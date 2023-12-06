@@ -1,5 +1,5 @@
 <template>
-  <div v-if="content" class="bg-custom-gradient">
+  <div v-if="content" class="bg-[#DEC0A5]">
     <div class="container px-4 pt-16 text-center" id="reservation">
       <h1 class="h1 font-serif font-bold text-neutral-900/80">
         {{ content.title }}
@@ -98,7 +98,7 @@
               type="email"
               name="user_email"
               :placeholder="translation.formEmail"
-              class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              class="rounded border border-neutral-900 bg-transparent px-9 placeholder-black focus:outline-none focus:ring-2 focus:ring-blue-600"
               style="height: 80px"
               required
             />
@@ -112,7 +112,7 @@
               type="tel"
               name="user_phone"
               :placeholder="translation.formPhoneNumber"
-              class="rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              class="rounded border border-neutral-900 bg-transparent px-9 placeholder-black focus:outline-none focus:ring-2 focus:ring-blue-600"
               style="height: 80px"
             />
           </div>
@@ -125,7 +125,7 @@
               name="message"
               :placeholder="translation.formMessage"
               rows="4"
-              class="w-full rounded border border-neutral-900 bg-transparent px-9 py-8 focus:outline-none focus:ring-2 focus:ring-blue-600"
+              class="w-full rounded border border-neutral-900 bg-transparent px-9 py-8 placeholder-black focus:outline-none focus:ring-2 focus:ring-blue-600"
             ></textarea>
           </div>
           <div class="col-span-full">

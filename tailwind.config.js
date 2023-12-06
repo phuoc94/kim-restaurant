@@ -78,8 +78,7 @@ module.exports = {
         libre: ["David Libre"],
       },
       backgroundImage: {
-        "custom-gradient":
-          "linear-gradient(90deg, #F6ECC1 0%, #DDF2D9 50%, #DDF0EC 100%)",
+        "custom-gradient": "linear-gradient(#FEF9CE,#C4A384, #643B15,#522901)",
       },
     },
   },

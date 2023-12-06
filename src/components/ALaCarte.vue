@@ -1,5 +1,5 @@
 <template>
-  <div class="bg">
+  <div class="bg-[#DEC0A5]">
     <div v-if="error" class="p-64 text-center">
       An error occurred: {{ error }}
     </div>
@@ -164,9 +164,4 @@ const fetchDishes = async () => {
 onMounted(fetchDishes);
 </script>
 
-<style scoped>
-.bg {
-  background-image: url("@/assets/bg.webp");
-  background-size: 100% auto;
-}
-</style>
+<style scoped></style>
