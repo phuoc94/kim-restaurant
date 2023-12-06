@@ -1,6 +1,8 @@
 <template>
   <div class="bg-custom-gradient">
-    <div class="container flex flex-wrap justify-center gap-y-12 py-8 sm:px-12">
+    <div
+      class="container flex flex-wrap justify-center gap-y-24 py-8 pb-20 sm:px-12"
+    >
       <div
         v-for="(card, index) in cards"
         :key="index"
@@ -18,9 +20,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import Card from "@/components/BestSellerCard.vue";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
+
+import Card from "@/components/BestSellerCard.vue";
+
 const API_URL = process.env.VUE_APP_API_URL;
 
 const cards = ref([]);
