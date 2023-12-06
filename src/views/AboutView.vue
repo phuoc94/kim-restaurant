@@ -1,6 +1,6 @@
 <template>
   <div v-if="content">
-    <img class="max-h-screen w-full object-cover" :src="content.image.url" />
+    <img class="max-h-screen w-full object-cover" :src="content.image?.url" />
 
     <div class="px-4">
       <div class="container grid justify-center">
@@ -73,6 +73,7 @@ const fetchContent = async () => {
     if (response.data.errors) {
       console.log("GraphQL errors:", response.data.errors);
     } else {
+      console.log(response.data.data.contents[0]);
       content.value = response.data.data.contents[0];
     }
   } catch (e) {

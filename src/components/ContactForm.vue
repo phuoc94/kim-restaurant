@@ -56,8 +56,14 @@
           value="10:00"
         />
       </div>
-      <div class="col-span-2 rounded border border-neutral-900 bg-white px-8">
-        <select name="num_people" class="w-full bg-white" style="height: 78px">
+      <div
+        class="select-wrapper col-span-2 rounded border border-neutral-900 px-8"
+      >
+        <select
+          name="num_people"
+          class="icon pi pi-chevron-down w-full"
+          style="height: 78px"
+        >
           <option value="1">1 {{ translation.formPerson }}</option>
           <option value="2" selected>2 {{ translation.formPerson }}</option>
           <option value="3">3 {{ translation.formPerson }}</option>
@@ -126,6 +132,8 @@
 </template>
 
 <script setup>
+import "primeicons/primeicons.css";
+
 import { onMounted, ref } from "vue";
 
 import axios from "axios";
@@ -212,4 +220,23 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.select-wrapper {
+  position: relative;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.select-wrapper:after {
+  content: "\e902";
+  font-family: "PrimeIcons";
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+</style>
