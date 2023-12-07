@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card-container mt-12 h-64 min-h-full rounded-lg rounded-br-[36px] rounded-tl-[36px] bg-[#FFE7CF] text-neutral-900 shadow-md lg:h-60"
+    class="card-container mt-12 h-80 min-h-full rounded-lg rounded-br-[36px] rounded-tl-[36px] bg-[#FFE7CF] text-neutral-900 shadow-md lg:h-60"
   >
     <div class="relative">
       <img
