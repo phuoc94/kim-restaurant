@@ -8,7 +8,9 @@
     </h1>
     <p class="font-inter text-white">{{ content.paragraph[0] }}</p>
 
-    <div class="container my-8 flex flex-wrap justify-center gap-y-12 px-14">
+    <div
+      class="container my-8 flex flex-wrap justify-center gap-y-12 px-14 pb-12"
+    >
       <div
         v-for="(card, index) in cards"
         :key="index"
@@ -43,10 +45,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import Card from "@/components/BestSellerCard.vue";
+import { onMounted, ref } from "vue";
+
 import axios from "axios";
+
+import Card from "@/components/BestSellerCard.vue";
 import { getBrowserLanguage } from "@/utils/languageUtils";
+
 const API_URL = process.env.VUE_APP_API_URL;
 
 const cards = ref([]);
