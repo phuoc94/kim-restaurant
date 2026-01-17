@@ -7,10 +7,14 @@
     >
       <div class="flex items-center gap-4">
         <a v-if="facebookLink" :href="facebookLink.path" target="_blank">
-          <i class="icon pi pi-facebook text-4xl text-black hover:text-amber-600"></i>
+          <i
+            class="icon pi pi-facebook text-4xl text-black hover:text-amber-600"
+          ></i>
         </a>
         <a v-if="instagramLink" :href="instagramLink.path" target="_blank">
-          <i class="icon pi pi-instagram text-4xl text-black hover:text-amber-600"></i>
+          <i
+            class="icon pi pi-instagram text-4xl text-black hover:text-amber-600"
+          ></i>
         </a>
       </div>
       <router-link v-if="route.path === '/'" :to="buttons[0].path">
@@ -107,8 +111,12 @@ const buttons = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
-const facebookLink = computed(() => buttons.value.find((l) => l.customId === "Facebook"));
-const instagramLink = computed(() => buttons.value.find((l) => l.customId === "Instagram"));
+const facebookLink = computed(() =>
+  buttons.value.find((l) => l.customId === "Facebook")
+);
+const instagramLink = computed(() =>
+  buttons.value.find((l) => l.customId === "Instagram")
+);
 
 // Check if a menu item is active
 const isActiveRoute = (menuItem) => {

@@ -22,26 +22,50 @@
             </router-link>
           </div>
         </div>
-        <div v-if="locationLink" class="mt-14 font-montserrat text-zinc-100 lg:mt-0 lg:basis-3/12">
+        <div
+          v-if="locationLink"
+          class="mt-14 font-montserrat text-zinc-100 lg:mt-0 lg:basis-3/12"
+        >
           <h4 class="font-bold">
             <i class="pi pi-map-marker mr-2"></i>{{ translation.footerAddress }}
           </h4>
           <div class="mt-3">
-            <a :href="locationLink.path" target="_blank" class="hover:text-amber-400">
+            <a
+              :href="locationLink.path"
+              target="_blank"
+              class="hover:text-amber-400"
+            >
               {{ locationLink.label }}
             </a>
           </div>
         </div>
-        <div v-if="facebookLink || instagramLink" class="mt-14 lg:mt-0 lg:basis-3/12">
+        <div
+          v-if="facebookLink || instagramLink"
+          class="mt-14 lg:mt-0 lg:basis-3/12"
+        >
           <h4 class="font-montserrat font-bold uppercase text-zinc-100">
             {{ translation.footerFollowUs }}
           </h4>
           <div class="mt-3 flex gap-4">
-            <a v-if="facebookLink" :href="facebookLink.path" target="_blank" class="hover:text-amber-400">
-              <i class="icon pi pi-facebook text-2xl text-zinc-100 hover:text-amber-400"></i>
+            <a
+              v-if="facebookLink"
+              :href="facebookLink.path"
+              target="_blank"
+              class="hover:text-amber-400"
+            >
+              <i
+                class="icon pi pi-facebook text-2xl text-zinc-100 hover:text-amber-400"
+              ></i>
             </a>
-            <a v-if="instagramLink" :href="instagramLink.path" target="_blank" class="hover:text-amber-400">
-              <i class="icon pi pi-instagram text-2xl text-zinc-100 hover:text-amber-400"></i>
+            <a
+              v-if="instagramLink"
+              :href="instagramLink.path"
+              target="_blank"
+              class="hover:text-amber-400"
+            >
+              <i
+                class="icon pi pi-instagram text-2xl text-zinc-100 hover:text-amber-400"
+              ></i>
             </a>
           </div>
         </div>
@@ -77,9 +101,15 @@ const links = ref([]);
 const loading = ref(true);
 const error = ref(null);
 
-const facebookLink = computed(() => links.value.find((l) => l.customId === "Facebook"));
-const locationLink = computed(() => links.value.find((l) => l.customId === "Location"));
-const instagramLink = computed(() => links.value.find((l) => l.customId === "Instagram"));
+const facebookLink = computed(() =>
+  links.value.find((l) => l.customId === "Facebook")
+);
+const locationLink = computed(() =>
+  links.value.find((l) => l.customId === "Location")
+);
+const instagramLink = computed(() =>
+  links.value.find((l) => l.customId === "Instagram")
+);
 
 const fetchLocales = async () => {
   try {

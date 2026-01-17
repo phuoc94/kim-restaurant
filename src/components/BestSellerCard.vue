@@ -34,7 +34,13 @@
 <script setup>
 import { computed, defineProps, onMounted, ref } from "vue";
 
-const props = defineProps(["title", "description", "price", "image", "hasVariablePrice"]);
+const props = defineProps([
+  "title",
+  "description",
+  "price",
+  "image",
+  "hasVariablePrice",
+]);
 const imageRef = ref(null);
 const translateValue = ref(0);
 
