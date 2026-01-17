@@ -2,7 +2,7 @@
   <div v-if="translation" class="page-footer bg-neutral-900/80">
     <div class="container p-11 pt-16 lg:flex lg:py-28">
       <div class="gap-4 lg:flex lg:basis-1/2">
-        <div class="min-w-max font-montserrat text-zinc-100 lg:basis-4/12">
+        <div class="min-w-max font-montserrat text-zinc-100 lg:basis-3/12">
           <h4 class="font-bold">{{ translation.footerOpenHours }}</h4>
           <div class="mt-3">
             <p v-for="hour in openHours" :key="hour.day">
@@ -22,9 +22,19 @@
             </router-link>
           </div>
         </div>
-        <div v-if="links.length > 0" class="mt-14 lg:mt-0 lg:basis-5/12">
+        <div v-if="locationLink" class="mt-14 font-montserrat text-zinc-100 lg:mt-0 lg:basis-3/12">
+          <h4 class="font-bold">
+            <i class="pi pi-map-marker mr-2"></i>{{ translation.footerAddress }}
+          </h4>
+          <div class="mt-3">
+            <a :href="locationLink.path" target="_blank" class="hover:text-amber-400">
+              {{ locationLink.label }}
+            </a>
+          </div>
+        </div>
+        <div v-if="facebookLink" class="mt-14 lg:mt-0 lg:basis-3/12">
           <h4 class="font-montserrat font-bold uppercase text-zinc-100">
-            <a :href="links[0].path" target="_blank">
+            <a :href="facebookLink.path" target="_blank">
               {{ translation.footerFollowUs }}
               <i class="icon pi pi-facebook ml-2"></i>
             </a>
@@ -46,7 +56,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import axios from "axios";
 
@@ -61,6 +71,9 @@ const translation = ref();
 const links = ref([]);
 const loading = ref(true);
 const error = ref(null);
+
+const facebookLink = computed(() => links.value.find((l) => l.customId === "Facebook"));
+const locationLink = computed(() => links.value.find((l) => l.customId === "Location"));
 
 const fetchLocales = async () => {
   try {
@@ -88,7 +101,7 @@ const fetchLocales = async () => {
           }
           links(
             orderBy: customId_ASC
-            where: {OR: [{customId: "Facebook"}]}
+            where: {OR: [{customId: "Facebook"}, {customId: "Location"}]}
             locales: $locales
           ) {
             customId
