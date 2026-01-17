@@ -5,9 +5,14 @@
       v-if="buttons.length > 0"
       class="hidden basis-1/3 items-center justify-end gap-10 lg:order-last lg:flex lg:basis-5/12"
     >
-      <a :href="buttons[1].path" target="_blank">
-        <i class="icon pi pi-facebook text-4xl text-black"></i>
-      </a>
+      <div class="flex items-center gap-4">
+        <a v-if="facebookLink" :href="facebookLink.path" target="_blank">
+          <i class="icon pi pi-facebook text-4xl text-black hover:text-amber-600"></i>
+        </a>
+        <a v-if="instagramLink" :href="instagramLink.path" target="_blank">
+          <i class="icon pi pi-instagram text-4xl text-black hover:text-amber-600"></i>
+        </a>
+      </div>
       <router-link v-if="route.path === '/'" :to="buttons[0].path">
         <button class="button">{{ buttons[0].label }}</button>
       </router-link>
@@ -85,7 +90,7 @@
 <script setup>
 import "primeicons/primeicons.css";
 
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 import axios from "axios";
 import { useRoute } from "vue-router";
@@ -101,6 +106,9 @@ const menuItems = ref([]);
 const buttons = ref([]);
 const loading = ref(true);
 const error = ref(null);
+
+const facebookLink = computed(() => buttons.value.find((l) => l.customId === "Facebook"));
+const instagramLink = computed(() => buttons.value.find((l) => l.customId === "Instagram"));
 
 // Check if a menu item is active
 const isActiveRoute = (menuItem) => {
@@ -126,7 +134,7 @@ const fetchLocales = async () => {
           }
           links(
             orderBy: customId_ASC
-            where: {OR: [{customId: "Navigation-Button"}, {customId: "Book-a-table-button"} ,  {customId: "Facebook"}]}
+            where: {OR: [{customId: "Navigation-Button"}, {customId: "Book-a-table-button"}, {customId: "Facebook"}, {customId: "Instagram"}]}
             locales: $locales
           ) {
             customId

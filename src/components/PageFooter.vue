@@ -32,13 +32,18 @@
             </a>
           </div>
         </div>
-        <div v-if="facebookLink" class="mt-14 lg:mt-0 lg:basis-3/12">
+        <div v-if="facebookLink || instagramLink" class="mt-14 lg:mt-0 lg:basis-3/12">
           <h4 class="font-montserrat font-bold uppercase text-zinc-100">
-            <a :href="facebookLink.path" target="_blank">
-              {{ translation.footerFollowUs }}
-              <i class="icon pi pi-facebook ml-2"></i>
-            </a>
+            {{ translation.footerFollowUs }}
           </h4>
+          <div class="mt-3 flex gap-4">
+            <a v-if="facebookLink" :href="facebookLink.path" target="_blank" class="hover:text-amber-400">
+              <i class="icon pi pi-facebook text-2xl text-zinc-100 hover:text-amber-400"></i>
+            </a>
+            <a v-if="instagramLink" :href="instagramLink.path" target="_blank" class="hover:text-amber-400">
+              <i class="icon pi pi-instagram text-2xl text-zinc-100 hover:text-amber-400"></i>
+            </a>
+          </div>
         </div>
       </div>
       <div
@@ -74,6 +79,7 @@ const error = ref(null);
 
 const facebookLink = computed(() => links.value.find((l) => l.customId === "Facebook"));
 const locationLink = computed(() => links.value.find((l) => l.customId === "Location"));
+const instagramLink = computed(() => links.value.find((l) => l.customId === "Instagram"));
 
 const fetchLocales = async () => {
   try {
@@ -101,7 +107,7 @@ const fetchLocales = async () => {
           }
           links(
             orderBy: customId_ASC
-            where: {OR: [{customId: "Facebook"}, {customId: "Location"}]}
+            where: {OR: [{customId: "Facebook"}, {customId: "Location"}, {customId: "Instagram"}]}
             locales: $locales
           ) {
             customId

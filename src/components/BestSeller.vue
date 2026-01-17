@@ -13,6 +13,7 @@
           :description="card.description"
           :price="card.prices[0].price.toFixed(2)"
           :image="card.image.url"
+          :hasVariablePrice="card.hasVariablePrice"
         />
       </div>
     </div>
@@ -42,6 +43,7 @@ const fetchDishes = async () => {
           menus(first: 8, where: {bestSeller: true}) {
           title
           description
+          hasVariablePrice
           prices(first: 1, orderBy: price_ASC) {
             price
           }
