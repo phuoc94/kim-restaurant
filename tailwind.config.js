@@ -73,9 +73,9 @@ module.exports = {
     extend: {
       fontFamily: {
         serif: ["Times New Roman", "ui-serif", "Georgia"],
-        montserrat: ["Montserrat"],
-        inter: ["Inter"],
-        libre: ["David Libre"],
+        montserrat: ["Montserrat", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+        libre: ["David Libre", "serif"],
       },
       backgroundImage: {
         "custom-gradient": "linear-gradient(#FEF9CE,#C4A384, #643B15,#522901)",
