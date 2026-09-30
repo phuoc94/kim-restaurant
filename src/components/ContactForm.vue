@@ -56,13 +56,11 @@
           value="10:00"
         />
       </div>
-      <div
-        class="select-wrapper col-span-2 rounded border border-neutral-900 px-8"
-      >
+      <div class="select-wrapper col-span-2">
         <select
           name="num_people"
-          class="icon pi pi-chevron-down w-full"
-          style="height: 78px"
+          class="w-full rounded border border-neutral-900 bg-transparent px-9 focus:outline-none focus:ring-2 focus:ring-blue-600"
+          style="height: 80px"
         >
           <option value="1">1 {{ translation.formPerson }}</option>
           <option value="2" selected>2 {{ translation.formPerson }}</option>
@@ -225,6 +223,8 @@ onMounted(() => {
   position: relative;
 }
 
+/* The select is the bordered box itself, like the inputs, and bg-transparent: iOS Safari gives a select a gray
+   background of its own, which showed inside the white box. */
 select {
   -webkit-appearance: none;
   appearance: none;
