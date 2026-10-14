@@ -81,6 +81,18 @@
         <img src="@/assets/image-5.png" />
       </div>
     </div>
+    <div
+      class="container border-t border-zinc-100/10 px-11 py-6 font-montserrat text-sm text-zinc-300"
+    >
+      Verkkosivut:
+      <a
+        href="https://koodimo.fi"
+        target="_blank"
+        rel="noopener"
+        class="underline underline-offset-2 hover:text-amber-400"
+        >Koodimo</a
+      >
+    </div>
   </div>
 </template>
 
