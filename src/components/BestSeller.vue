@@ -6,7 +6,7 @@
       <div
         v-for="(card, index) in cards"
         :key="index"
-        class="basis-full px-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+        class="flex basis-full px-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
       >
         <Card
           :title="card.title"
