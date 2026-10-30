@@ -17,11 +17,8 @@
           ></i>
         </a>
       </div>
-      <router-link v-if="route.path === '/'" :to="buttons[0].path">
-        <button class="button">{{ buttons[0].label }}</button>
-      </router-link>
-      <router-link v-else :to="buttons[2].path">
-        <button class="button">{{ buttons[2].label }}</button>
+      <router-link v-if="bookingButton" :to="bookingButton.path">
+        <button class="button">{{ bookingButton.label }}</button>
       </router-link>
     </div>
 
@@ -79,12 +76,9 @@
       </div>
 
       <!-- "Book a table" button (small screens) -->
-      <div class="my-4 lg:hidden" v-if="buttons.length > 0">
-        <router-link v-if="route.path === '/'" :to="buttons[0].path">
-          <button class="button">{{ buttons[0].label }}</button>
-        </router-link>
-        <router-link v-else :to="buttons[2].path">
-          <button class="button">{{ buttons[2].label }}</button>
+      <div class="my-4 lg:hidden" v-if="bookingButton">
+        <router-link :to="bookingButton.path">
+          <button class="button">{{ bookingButton.label }}</button>
         </router-link>
       </div>
     </div>
@@ -117,6 +111,13 @@ const facebookLink = computed(() =>
 const instagramLink = computed(() =>
   buttons.value.find((l) => l.customId === "Instagram")
 );
+// By name, not by position: the links come sorted by customId, so adding one to the CMS moves the others.
+// The home page has the form further down; every other page links to the contact page's form.
+const bookingButton = computed(() => {
+  const customId =
+    route.path === "/" ? "Book-a-table-button" : "Navigation-Button";
+  return buttons.value.find((l) => l.customId === customId);
+});
 
 // Check if a menu item is active
 const isActiveRoute = (menuItem) => {
