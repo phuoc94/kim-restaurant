@@ -20,7 +20,13 @@
         properly without JavaScript enabled. Please enable it to
         continue.</strong>
   </noscript>
-  <div id="app"></div>
+  <!-- Vue replaces this credit with the footer's own when it mounts. It is here so the link is in the HTML every
+    route is served, for crawlers that do not run JavaScript. -->
+  <div id="app">
+    <p style="position: fixed; bottom: 1rem; left: 1rem; margin: 0; font: 14px sans-serif">
+      Verkkosivut: <a href="https://koodimo.fi" target="_blank" rel="noopener">Koodimo</a>
+    </p>
+  </div>
   <!-- built files will be auto injected -->
 </body>
 
