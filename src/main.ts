@@ -11,6 +11,9 @@ import "@fontsource/inter/700.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/700.css";
 import "./index.css";
+import { setUpHygraphRequests } from "./utils/hygraphRequests";
+
+setUpHygraphRequests();
 
 const app = createApp(App);
 app.use(router);

@@ -11,9 +11,8 @@
 
       <!-- Right-side carousel -->
       <div v-if="loading">Loading...</div>
-      <div v-else-if="error">Error: {{ error }}</div>
       <div
-        v-else
+        v-else-if="!error"
         class="relative mx-auto max-w-xl -translate-y-28 text-center md:absolute md:left-[40%] md:mr-12 md:translate-y-0 md:self-center lg:left-[50%]"
       >
         <Carousel

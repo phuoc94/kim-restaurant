@@ -41,7 +41,7 @@
     <p>Loading...</p>
   </div>
   <div v-else class="flex min-h-screen items-center justify-center">
-    <p>An error occurred: {{ error }}</p>
+    <p>Sisältöä ei voitu ladata. Yritä päivittää sivu.</p>
   </div>
 </template>
 

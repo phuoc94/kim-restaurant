@@ -1,6 +1,6 @@
 <template>
-  <div v-if="translation" class="page-footer bg-neutral-900/80">
-    <div class="container p-11 pt-16 lg:flex lg:py-28">
+  <div v-if="!loading" class="page-footer bg-neutral-900/80">
+    <div v-if="translation" class="container p-11 pt-16 lg:flex lg:py-28">
       <div class="gap-4 lg:flex lg:basis-1/2">
         <div class="min-w-max font-montserrat text-zinc-100 lg:basis-3/12">
           <h4 class="font-bold">{{ translation.footerOpenHours }}</h4>

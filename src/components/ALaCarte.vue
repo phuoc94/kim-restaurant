@@ -1,7 +1,7 @@
 <template>
   <div class="bg-[#DEC0A5]">
     <div v-if="error" class="p-64 text-center">
-      An error occurred: {{ error }}
+      Ruokalistaa ei voitu ladata. Yritä päivittää sivu.
     </div>
 
     <div v-else-if="loading" class="p-64 text-center">Loading...</div>
