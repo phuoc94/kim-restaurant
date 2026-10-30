@@ -142,13 +142,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 
 import axios from "axios";
-import { Datepicker, initTE, Input, Timepicker } from "tw-elements";
 
 import { convertToTranslationObject } from "@/utils/convertToTranslationObject";
 import { getBrowserLanguage } from "@/utils/languageUtils";
+import { initReservationPickers } from "@/utils/reservationPickers";
 import emailjs from "@emailjs/browser";
 
 const API_URL = process.env.VUE_APP_API_URL;
@@ -229,9 +229,18 @@ const fetchContent = async () => {
   }
 };
 
-onMounted(() => {
-  fetchContent();
-  initTE({ Timepicker, Datepicker, Input });
+let removePickers = null;
+
+onMounted(async () => {
+  await fetchContent();
+  await nextTick();
+  if (form.value) {
+    removePickers = initReservationPickers(form.value);
+  }
+});
+
+onBeforeUnmount(() => {
+  removePickers?.();
 });
 </script>
 

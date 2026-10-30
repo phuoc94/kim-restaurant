@@ -132,13 +132,13 @@
 <script setup>
 import "primeicons/primeicons.css";
 
-import { onMounted, ref } from "vue";
+import { nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 
 import axios from "axios";
-import { Datepicker, initTE, Input, Timepicker } from "tw-elements";
 
 import { convertToTranslationObject } from "@/utils/convertToTranslationObject";
 import { getBrowserLanguage } from "@/utils/languageUtils";
+import { initReservationPickers } from "@/utils/reservationPickers";
 import emailjs from "@emailjs/browser";
 
 const API_URL = process.env.VUE_APP_API_URL;
@@ -212,20 +212,31 @@ const fetchContent = async () => {
   }
 };
 
-onMounted(() => {
-  fetchContent();
-  initTE({ Timepicker, Datepicker, Input });
+let removePickers = null;
+
+onMounted(async () => {
+  await fetchContent();
+  await nextTick();
+  if (form.value) {
+    removePickers = initReservationPickers(form.value);
+  }
+});
+
+onBeforeUnmount(() => {
+  removePickers?.();
 });
 </script>
 
-<style scoped>
+<!-- Not scoped: the timepicker takes its toggle from the input's first data attribute, and in a scoped component that is
+     Vue's data-v-*, so the picker would never open. -->
+<style>
 .select-wrapper {
   position: relative;
 }
 
 /* The select is the bordered box itself, like the inputs, and bg-transparent: iOS Safari gives a select a gray
    background of its own, which showed inside the white box. */
-select {
+.select-wrapper select {
   -webkit-appearance: none;
   appearance: none;
 }
