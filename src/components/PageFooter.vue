@@ -39,35 +39,49 @@
             </a>
           </div>
         </div>
-        <div
-          v-if="facebookLink || instagramLink"
-          class="mt-14 lg:mt-0 lg:basis-3/12"
-        >
-          <h4 class="font-montserrat font-bold uppercase text-zinc-100">
-            {{ translation.footerFollowUs }}
-          </h4>
-          <div class="mt-3 flex gap-4">
-            <a
-              v-if="facebookLink"
-              :href="facebookLink.path"
-              target="_blank"
-              class="hover:text-amber-400"
-            >
-              <i
-                class="icon pi pi-facebook text-2xl text-zinc-100 hover:text-amber-400"
-              ></i>
-            </a>
-            <a
-              v-if="instagramLink"
-              :href="instagramLink.path"
-              target="_blank"
-              class="hover:text-amber-400"
-            >
-              <i
-                class="icon pi pi-instagram text-2xl text-zinc-100 hover:text-amber-400"
-              ></i>
-            </a>
-          </div>
+        <div class="mt-14 lg:mt-0 lg:basis-3/12">
+          <template v-if="facebookLink || instagramLink">
+            <h4 class="font-montserrat font-bold uppercase text-zinc-100">
+              {{ translation.footerFollowUs }}
+            </h4>
+            <div class="mt-3 flex gap-4">
+              <a
+                v-if="facebookLink"
+                :href="facebookLink.path"
+                target="_blank"
+                class="hover:text-amber-400"
+              >
+                <i
+                  class="icon pi pi-facebook text-2xl text-zinc-100 hover:text-amber-400"
+                ></i>
+              </a>
+              <a
+                v-if="instagramLink"
+                :href="instagramLink.path"
+                target="_blank"
+                class="hover:text-amber-400"
+              >
+                <i
+                  class="icon pi pi-instagram text-2xl text-zinc-100 hover:text-amber-400"
+                ></i>
+              </a>
+            </div>
+          </template>
+          <a
+            :href="OIVA_REPORT_URL"
+            target="_blank"
+            rel="noopener"
+            class="mt-6 inline-flex flex-col gap-1 font-montserrat text-sm text-zinc-100 first:mt-0 hover:text-amber-400"
+          >
+            <img
+              src="@/assets/oiva-logo.svg"
+              alt=""
+              width="98"
+              height="32"
+              class="h-8 w-auto"
+            />
+            Oiva-raportti
+          </a>
         </div>
       </div>
       <div
@@ -105,6 +119,12 @@ import { convertToTranslationObject } from "@/utils/convertToTranslationObject";
 import { getBrowserLanguage } from "@/utils/languageUtils";
 
 const API_URL = process.env.VUE_APP_API_URL;
+
+// Ruokavirasto's määräys 11/2026 requires a link to the restaurant's latest Oiva report on the home page. This search
+// lists every report Ruokavirasto has published for the venue, so the link stays current after each inspection; a
+// link to one report's PDF would keep showing that old report. "Turku" narrows the results to this restaurant alone.
+const OIVA_REPORT_URL =
+  "https://www.oivahymy.fi/yrityshaku?hakusana=Kimin%20Ravintola%20Turku";
 
 const menuItems = ref([]);
 const openHours = ref([]);
